@@ -1,0 +1,21 @@
+<div class="nested-fields">
+	<div class="row">
+		<div class="col-md-2">
+  			<%= f.datetime_field :fecha, placeholder: 'Fecha y Hora', size: 30 %>
+  		</div>
+  		<div class="col-md-3">
+  			<%= f.text_field :asignado, placeholder: 'Asignado a', size: 40 %>
+  		</div>
+  		<div class="col-md-4">
+  			<%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2  %>
+  		</div>
+      <div class="col-md-2">
+        Estatus: <%= f.select :estatus, ['Pendiente', 'Falta Notificación', 'Diferida por Pláticas', 'No llegó el exhorto', 
+                                         'Por incidente', 'Desahogo y pendiente de pruebas'] %>
+      </div>
+  	</div>
+</div>      
+
+<javascript>
+   
+  </javascript>

@@ -1,0 +1,103 @@
+<%= form_with(model: expediente, local: true) do |form| %>
+  <% if @expediente.errors.any? %>
+      <% @expediente.errors.full_messages.each do |message| %>
+         <%= js add_gritter(message, title: "Expedientes", sticky: false) %>
+      <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit "Guardar", class: "btn btn-primary btn-lg", size: 50 %>
+    <%= link_to 'Expedientes', expedientes_path, class: "btn btn-info btn-lg", size: 50 %>
+  </div><hr>
+
+  <div class="row">
+  	<div class="col-md-2">
+    	<%= form.text_field :anio, placeholder: 'Año', :autofocus => true %>
+	</div>
+
+	<div class="col-md-2">
+    	<%= form.text_field :expediente, placeholder: 'Número de Expediente' %>
+	</div>
+
+	<div class="col-md-2">
+    	<%= form.text_field :demandante, placeholder: 'Demandante' %>
+	</div>
+
+	<div class="col-md-2">
+    	<%= form.text_field :demandado, placeholder: 'Demandado' %>
+	</div>
+
+	<div class="col-md-2">
+		Instancia: <%= form.select :entidad_responsable, ['Junta Local', 'Junta Federal', 'Burocático'] %>
+		 
+	</div>
+
+	<div class="col-md-2">
+    	<%= form.text_field :socio, placeholder: 'Abogado' %>
+	</div>
+</div><br>
+<div class="row">
+	<div class="col-md-5">
+    	Estado Procesal: <%= form.select :estado_procesal, ['Pendiente', 'Para Audiencia', 'Para Resolución Incidental', 'Para Pruebas','Para Desahogo de Pruebas', 'Para Informes', 'Para Desahogo Testimonial', 
+    						'Para Alegatos', 'Para Ejecucion', 'Para Laudo', 'Para Amparo', 'En Amparo']  %>
+	</div>
+  	<div class="col-md-1">Referencias</div>
+  	<div class="col-md-2">
+    	<%= form.text_field :referencia1, placeholder: 'Referencia 1' %>
+    </div>
+    <div class="col-md-2">
+    	<%= form.text_field :referencia2, placeholder: 'Referencia 2' %>
+    </div>
+    <div class="col-md-2">
+    	<%= form.text_field :referencia3, placeholder: 'Referencia 3' %>
+  </div>
+</div>
+
+  <div class="row">
+	<hr><h3>Expediente</h3>
+	<div class="col-md-2">
+    	<%= form.text_field :ubicacion_fisica, placeholder: 'Ubicación Física' %>
+	</div>
+
+	<div class="col-md-2">
+    	<%= form.text_field :despacho, placeholder: 'Despacho' %>
+	</div>
+
+	<div class="field">
+    <%= form.text_field :archivo, placeholder: 'Nombre de Archivo' %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 6 %>
+  </div>
+</div>
+
+  
+  <hr>
+
+  <h3>AUDIENCIAS</h3>
+
+	<table class="table">
+    <thead>
+         <tr>
+           <th>Fecha </th>
+           <th>Asignado</th>
+           <th>Comentarios</th>
+         </tr>
+      </thead>
+      <div class="row">
+      	<%= form.fields_for :audiencia_expedientes do |audiencia| %>
+        	<%= render 'audiencia_expediente_fields', f: audiencia %>
+    	<% end %>
+    <div>
+</table>
+  
+<div>    
+    <%= link_to_add_association 'Agregar Audiencia', form, :audiencia_expedientes, class:'btn btn-primary btn-lg' %>
+</div>
+
+  
+
+<% end %>
