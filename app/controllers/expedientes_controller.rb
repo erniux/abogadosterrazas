@@ -1,13 +1,14 @@
 class ExpedientesController < ApplicationController
 	before_action :set_expediente, only: [:show, :edit, :update, :destroy]
+  access abogado: {except: [:destroy]}, admin: :all
 
   def index
     #@expedientes = Expediente.all.order("anio DESC")
     if params[:term]
-      @expedientes = Expediente.search_by_full_expediente(params[:term]) #.page(params[:page]).per(15).padding(4)
+      @expedientes = Expediente.search_by_full_expediente(params[:term]) 
     else
-      @expedientes = Expediente.all.page(params[:page]).per(15).padding(4)
-    end
+      @expedientes = Expediente.all.page(params[:page]).per(11).padding(4)
+    end 
 
   end
 

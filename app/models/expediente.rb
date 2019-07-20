@@ -10,15 +10,14 @@ class Expediente < ApplicationRecord
 	pg_search_scope :search_by_full_expediente, against: [:expediente, :demandante, :demandado, :entidad_responsable, 
 														  :socio, :estado_procesal, :ubicacion_fisica, :despacho, 
 														  :referencia1, :referencia2, :referencia3, :anio], 
-												using: {tsearch: { prefix: true }
-                  }
+												using:   {tsearch: { prefix: true }}
 
-  private
+  	private
 
-  def to_upper
-    attributes.keys.each do |attribute|
-      [attribute].try(:upcase!)
-    end
-  end
+  	def to_upper
+  	  attributes.keys.each do |attribute|
+  	    [attribute].try(:upcase!)
+  	  end
+  	end
 
 end

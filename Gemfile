@@ -19,7 +19,7 @@ gem 'gritter', '~> 1.2'
 gem 'pg_search', '~> 2.3'
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
-gem 'cancancan', '~> 3.0', '>= 3.0.1'
+gem 'petergate', '~> 2.0', '>= 2.0.1'
 
 
 gem 'bootsnap', '>= 1.1.0', require: false

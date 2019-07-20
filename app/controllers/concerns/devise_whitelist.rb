@@ -9,8 +9,17 @@ module DeviseWhitelist
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:socio])
     devise_parameter_sanitizer.permit(:account_update, keys: [:socio])
+
+    devise_parameter_sanitizer.permit(:sign_in) do |user_params|
+    	user_params.permit(:socio)
+  	end
+
   end
 
+  attr_writer :login
 
+  def login
+    @login || self.socio || self.email
+  end
 
 end
