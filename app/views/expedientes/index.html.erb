@@ -12,10 +12,10 @@
   </div>
   <% end %>
    
-   <% if params[:term]=='' %>
-    <p><%= link_to_previous_page @expedientes, 'Previa', class: 'btn btn-primary btn-sm' %>
+   <% if params[:term].blank? %>
+    <p><%= link_to_previous_page @expedientes, 'Previa', class: 'btn btn-primary btn-sm'  %>
        <%= link_to_next_page @expedientes, 'Siguiente', class: 'btn btn-primary btn-sm' %></p>
-  <% end %>
+   <% end %>
 
 <table class="table">
   <thead>
