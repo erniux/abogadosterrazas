@@ -5,6 +5,7 @@ class Expediente < ApplicationRecord
 	belongs_to :user
 	has_many :audiencia_expedientes, inverse_of: :expediente
 	validates_uniqueness_of :expediente
+	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho
 	
 	accepts_nested_attributes_for :audiencia_expedientes, reject_if: :all_blank, allow_destroy: true
 
@@ -20,5 +21,7 @@ class Expediente < ApplicationRecord
   	    [attribute].try(:upcase!)
   	  end
   	end
+
+
 
 end

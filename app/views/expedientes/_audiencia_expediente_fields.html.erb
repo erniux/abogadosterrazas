@@ -1,8 +1,8 @@
 <div class="nested-fields">
 	<div class="row">
 		<div class="col-md-2">
-  			<%= f.datetime_field :fecha, placeholder: 'Fecha y Hora', size: 30 %>
-  		</div>
+       <%= f.datetime_field :fecha, placeholder: 'Fecha y Hora', date_format: 'YYYY-MM-DD hh:mm' %>
+  	</div>
   		<div class="col-md-3">
   			<%= f.text_field :asignado, placeholder: 'Asignado a', size: 40 %>
   		</div>
@@ -16,6 +16,8 @@
   	</div>
 </div>      
 
-<javascript>
-   
-  </javascript>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker').datetimepicker();
+  });
+</script>

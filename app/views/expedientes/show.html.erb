@@ -48,7 +48,7 @@
 		<% @expediente.audiencia_expedientes.each do |audiencia| %>
 			<tr>
 				<td><%= audiencia.id %></td>
-				<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") %></td>
+				<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha.nil? %></td>
 				<td><%= audiencia.expediente.expediente %></td> 
 				<td><%= audiencia.expediente.entidad_responsable.upcase %></td>
 				<td><%= audiencia.asignado.upcase %></td>
