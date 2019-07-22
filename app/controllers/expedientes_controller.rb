@@ -13,21 +13,34 @@ class ExpedientesController < ApplicationController
   end
 
   def show
+    AuditLog.create!(expediente: @expediente.expediente, demandante: @expediente.demandante, demandado: @expediente.demandado, 
+  entidad_responsable: @expediente.entidad_responsable, socio: @expediente.socio, estado_procesal: @expediente.estado_procesal, 
+  ubicacion_fisica: @expediente.ubicacion_fisica, despacho: @expediente.despacho, referencia1: @expediente.referencia1, 
+  referencia2: @expediente.referencia2, referencia3: @expediente.referencia3, comentarios: @expediente.comentarios, 
+  archivo: @expediente.archivo, anio: @expediente.anio, comentarios_audicencia: @expediente.audiencia_expedientes.inspect, 
+  email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Consulta de Expediente' )
   end
 
   def new
     @expediente = Expediente.new
+
   end
 
   def edit
   end
 
   def create
-    @expediente = Expediente.new(expediente_params) 
+    @expediente = current_user.expedientes.new(expediente_params)
 
     respond_to do |format|
       if @expediente.save
         #Crear Registro en la bitácora
+        AuditLog.create!(expediente: @expediente.expediente, demandante: @expediente.demandante, demandado: @expediente.demandado, 
+  entidad_responsable: @expediente.entidad_responsable, socio: @expediente.socio, estado_procesal: @expediente.estado_procesal, 
+  ubicacion_fisica: @expediente.ubicacion_fisica, despacho: @expediente.despacho, referencia1: @expediente.referencia1, 
+  referencia2: @expediente.referencia2, referencia3: @expediente.referencia3, comentarios: @expediente.comentarios, 
+  archivo: @expediente.archivo, anio: @expediente.anio, comentarios_audicencia: @expediente.audiencia_expedientes.inspect, 
+  email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Creación de Expediente' )
          
         format.html { redirect_to @expediente, notice: 'Regsitro creado correctamente.' }
       else
@@ -39,6 +52,12 @@ class ExpedientesController < ApplicationController
   def update
     respond_to do |format|
       if @expediente.update(expediente_params)
+        AuditLog.create!(expediente: @expediente.expediente, demandante: @expediente.demandante, demandado: @expediente.demandado, 
+  entidad_responsable: @expediente.entidad_responsable, socio: @expediente.socio, estado_procesal: @expediente.estado_procesal, 
+  ubicacion_fisica: @expediente.ubicacion_fisica, despacho: @expediente.despacho, referencia1: @expediente.referencia1, 
+  referencia2: @expediente.referencia2, referencia3: @expediente.referencia3, comentarios: @expediente.comentarios, 
+  archivo: @expediente.archivo, anio: @expediente.anio, comentarios_audicencia: @expediente.audiencia_expedientes.inspect, 
+  email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Actualización de Expediente' )
         format.html { redirect_to @expediente, notice: 'Regsitro actualizado correctamente.' }
       else
         format.html { render :edit }
@@ -47,6 +66,12 @@ class ExpedientesController < ApplicationController
   end
 
   def destroy
+    AuditLog.create!(expediente: @expediente.expediente, demandante: @expediente.demandante, demandado: @expediente.demandado, 
+  entidad_responsable: @expediente.entidad_responsable, socio: @expediente.socio, estado_procesal: @expediente.estado_procesal, 
+  ubicacion_fisica: @expediente.ubicacion_fisica, despacho: @expediente.despacho, referencia1: @expediente.referencia1, 
+  referencia2: @expediente.referencia2, referencia3: @expediente.referencia3, comentarios: @expediente.comentarios, 
+  archivo: @expediente.archivo, anio: @expediente.anio, comentarios_audicencia: @expediente.audiencia_expedientes.inspect, 
+  email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Eliminación de Expediente' )
     @expediente.destroy
     respond_to do |format|
       format.html { redirect_to expedientes_url, notice: 'Regsitro eliminado correctamente.' }
@@ -61,7 +86,7 @@ class ExpedientesController < ApplicationController
     def expediente_params
       params.require(:expediente).permit(:anio, :expediente, :demandante, :demandado, :entidad_responsable, :socio, 
                                          :estado_procesal, :ubicacion_fisica, :despacho, :referencia1, :referencia2, 
-                                         :referencia3, :comentarios, :archivo,
+                                         :referencia3, :comentarios, :archivo, 
                          audiencia_expedientes_attributes: [:id, :fecha, :asignado, :comentarios, :expedientes_id, :estatus,
                                                             :_destroy])
     end

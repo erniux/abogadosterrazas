@@ -17,5 +17,7 @@ class User < ApplicationRecord
 
   validates :socio, presence: :true, uniqueness: { case_sensitive: false }
 
+  has_many :expedientes
+  has_many :audit_logs
 
 end

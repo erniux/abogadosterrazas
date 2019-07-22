@@ -15,7 +15,9 @@
         <% if current_user %>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.socio %> <span></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "perfil", edit_user_registration_path %></li>
+              <% if current_user.has_role?(:admin) %>
+                <li><%= link_to "perfil", edit_user_registration_path %></li>
+              <% end %>
               <li><%= link_to "salir", destroy_user_session_path, method: :delete, class: "active" %></li>
             </ul>
         <% else %>
@@ -28,10 +30,12 @@
         <% if current_user %>
           <li><%= link_to "inicio", root_path %></li>
           <li><%= link_to "expedientes", expedientes_path %></li>
-          <li><%= link_to "audiencias", root_path %></li>
-          <li><%= link_to "bitácora", root_path %></li>
-          <li><%= link_to "catálogos", root_path %></li> 
-          <% end %>
+          <% if current_user.has_role?(:admin) %>
+            <li><%= link_to "audiencias", root_path %></li>
+            <li><%= link_to "bitácora", root_path %></li>
+            <li><%= link_to "catálogos", root_path %></li> 
+            <% end %>
+        <% end %>
       </ul>
   </div>
 </nav>

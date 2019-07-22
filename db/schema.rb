@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_20_221543) do
+ActiveRecord::Schema.define(version: 2019_07_22_150300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,37 @@ ActiveRecord::Schema.define(version: 2019_07_20_221543) do
     t.datetime "updated_at", null: false
     t.string "estatus", default: "0"
     t.index ["expediente_id"], name: "index_audiencia_expedientes_on_expediente_id"
+  end
+
+  create_table "audit_logs", force: :cascade do |t|
+    t.string "expediente"
+    t.string "demandante"
+    t.string "demandado"
+    t.string "entidad_responsable"
+    t.string "socio"
+    t.string "estado_procesal"
+    t.string "ubicacion_fisica"
+    t.string "despacho"
+    t.string "referencia1"
+    t.string "referencia2"
+    t.string "referencia3"
+    t.string "comentarios"
+    t.string "archivo"
+    t.string "anio"
+    t.datetime "fecha_audiencia"
+    t.string "asignado_audiencia"
+    t.string "comentarios_audicencia"
+    t.string "estatus"
+    t.string "email"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "accion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_audit_logs_on_user_id"
   end
 
   create_table "expedientes", force: :cascade do |t|
@@ -43,6 +74,8 @@ ActiveRecord::Schema.define(version: 2019_07_20_221543) do
     t.text "comentarios"
     t.text "archivo"
     t.integer "anio"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_expedientes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,4 +98,6 @@ ActiveRecord::Schema.define(version: 2019_07_20_221543) do
   end
 
   add_foreign_key "audiencia_expedientes", "expedientes"
+  add_foreign_key "audit_logs", "users"
+  add_foreign_key "expedientes", "users"
 end

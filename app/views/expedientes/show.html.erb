@@ -1,26 +1,33 @@
 <p><%= link_to "Crear Expediente", new_expediente_path, class: "btn btn-primary btn-lg" %></p>
 <hr>
-<h3>DETALLE EXPEDIENTE: <%= @expediente.expediente %>&nbsp;AÑO: <%= @expediente.anio %></h3>
-<h4><%= @expediente.demandante  %> vs <%= @expediente.demandado %></h4>
-<h5>INSTANCIA: <%= @expediente.entidad_responsable.upcase %></h5>
-<h5>ESTADO PROCESAL: <%= @expediente.estado_procesal.upcase %></h5>
+<div class="row">
+	<div class="col-md-6">
+		<h3>Número Expediente: <%= @expediente.expediente %>&nbsp;&nbsp;Año: <%= @expediente.anio %></h3>
+		<h4><%= @expediente.demandante  %> vs <%= @expediente.demandado %></h4>
+		<h5>INSTANCIA: <%= @expediente.entidad_responsable.upcase %></h5>
+		<h5>ESTADO PROCESAL: <%= @expediente.estado_procesal.upcase %></h5>
+	</div>
+	<div class="col-md-6">
+		<h3>EXPEDIENTE</h3>
+		<p>Ubicación: <%= @expediente.ubicacion_fisica.upcase %>, <%= @expediente.despacho.upcase %></p>
+		<p>Responsable: <%= @expediente.socio.upcase %></p>
+		 
+		<% if !@expediente.referencia1.nil? %>
+			<h5>Referencias</h5>
+			<p><%= @expediente.referencia1.upcase %> </p>
+		<% end %>
+		<% if !@expediente.referencia2.nil? %>
+			<p><%= @expediente.referencia2.upcase %> </p>
+		<% end %>
+		<% if !@expediente.referencia3.nil? %>
+			<p><%= @expediente.referencia3.upcase %> </p>
+		<% end %>
+		<p>COMENTARIOS: <%= @expediente.comentarios.upcase %></p>
+		
+	</div>
+</div>	 
+
 <hr>
-<h4>EXPEDIENTE</h4>
-<p>Ubicación: <%= @expediente.ubicacion_fisica.upcase %>, <%= @expediente.despacho.upcase %></p>
-<p>Responsable: <%= @expediente.socio.upcase %></p>
- 
-<% if !@expediente.referencia1.nil? %>
-	<h5>Referencias</h5>
-	<p><%= @expediente.referencia1.upcase %> </p>
-<% end %>
-<% if !@expediente.referencia2.nil? %>
-	<p><%= @expediente.referencia2.upcase %> </p>
-<% end %>
-<% if !@expediente.referencia3.nil? %>
-	<p><%= @expediente.referencia3.upcase %> </p>
-<% end %>
-<p>COMENTARIOS: <%= @expediente.comentarios.upcase %></p>
-<hr>	 
 <h3> Audiencias </h3>
 
 <table class="table">
