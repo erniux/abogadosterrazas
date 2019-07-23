@@ -20,8 +20,7 @@ gem 'pg_search', '~> 2.3'
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'petergate', '~> 2.0', '>= 2.0.1'
-gem 'momentjs-rails', '~> 2.20', '>= 2.20.1'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17', '>= 4.17.47'
+gem 'simple_calendar', '~> 2.3'	
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

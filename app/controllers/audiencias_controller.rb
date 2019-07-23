@@ -1,10 +1,10 @@
 class AudienciasController < ApplicationController
-  access abogado: {except: [:destroy]}, admin: :all
+  access admin: :all
   
 	def index
-		@audiencias = AudienciaExpediente.where(expediente_id: params[:expediente_id])
-	end
+		@audiencias = AudienciaExpediente.all 
 
+	end
 
 	private
     def set_audiencia

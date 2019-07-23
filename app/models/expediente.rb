@@ -3,7 +3,8 @@ class Expediente < ApplicationRecord
 
 	before_save :to_upper
 	belongs_to :user
-	has_many :audiencia_expedientes, inverse_of: :expediente
+	has_many :audiencia_expedientes, inverse_of: :expediente 
+
 	validates_uniqueness_of :expediente
 	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho
 	

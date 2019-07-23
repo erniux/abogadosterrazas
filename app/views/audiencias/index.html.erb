@@ -1,0 +1,12 @@
+<%= month_calendar attribute: :fecha, events: @audiencias do |date, meetings| %>
+  <%= date.day %>
+
+  <% meetings.each do |meeting| %>
+    <div>
+      <%= meeting.expediente.expediente %>	
+      <%= meeting.expediente.entidad_responsable %>	
+      <%= meeting.fecha.strftime("%H:%M:%S") %>	
+    </div>
+  <% end %>
+<% end %>
+
