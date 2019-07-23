@@ -42,7 +42,7 @@ class ExpedientesController < ApplicationController
   archivo: @expediente.archivo, anio: @expediente.anio, comentarios_audicencia: @expediente.audiencia_expedientes.inspect, 
   email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Creación de Expediente' )
          
-        format.html { redirect_to @expediente, notice: 'Regsitro creado correctamente.' }
+        format.html { redirect_to @expediente, notice: 'Registro creado correctamente.' }
       else
         format.html { render :new }
       end
@@ -58,7 +58,7 @@ class ExpedientesController < ApplicationController
   referencia2: @expediente.referencia2, referencia3: @expediente.referencia3, comentarios: @expediente.comentarios, 
   archivo: @expediente.archivo, anio: @expediente.anio, comentarios_audicencia: @expediente.audiencia_expedientes.inspect, 
   email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Actualización de Expediente' )
-        format.html { redirect_to @expediente, notice: 'Regsitro actualizado correctamente.' }
+        format.html { redirect_to @expediente, notice: 'Registro actualizado correctamente.' }
       else
         format.html { render :edit }
       end
@@ -74,7 +74,7 @@ class ExpedientesController < ApplicationController
   email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Eliminación de Expediente' )
     @expediente.destroy
     respond_to do |format|
-      format.html { redirect_to expedientes_url, notice: 'Regsitro eliminado correctamente.' }
+      format.html { redirect_to expedientes_url, notice: 'Registro eliminado correctamente.' }
     end
   end
 
