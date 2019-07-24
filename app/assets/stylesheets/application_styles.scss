@@ -3,7 +3,7 @@
 
 body {
 	padding-top: 80px;     
-	padding-left: 50px;
+	padding-left: 200px;
 	padding-bottom: 50px;
 	padding-right: 50px;
 }
@@ -92,6 +92,13 @@ border: 1px solid #e9b3b3;
 .content-box-yellow {
 background-color: #fef5c4;
 border: 1px solid #fadf98;
+}
+
+.anios {
+	position: fixed;  
+	left: 0;  
+	top: 150px;  
+	z-index: 2000;  
 }
 
  

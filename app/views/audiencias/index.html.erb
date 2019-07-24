@@ -3,11 +3,6 @@
 
   <% meetings.each do |meeting| %>
     <div>
-    	<!-- 
-    		burocartico = azul
-    		federal = verde
-    		local = naranja
-    	-->
     	<% if meeting.expediente.entidad_responsable == 'Burocrático' %>
     		<div class="content-box-buro">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
