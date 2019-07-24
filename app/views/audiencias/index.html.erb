@@ -3,9 +3,24 @@
 
   <% meetings.each do |meeting| %>
     <div>
-      <%= meeting.expediente.expediente %>	
-      <%= meeting.expediente.entidad_responsable %>	
-      <%= meeting.fecha.strftime("%H:%M:%S") %>	
+    	<!-- 
+    		burocartico = azul
+    		federal = verde
+    		local = naranja
+    	-->
+    	<% if meeting.expediente.entidad_responsable == 'Burocrático' %>
+    		<div class="buro">
+      			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
+      		</div>
+      		<% elsif meeting.expediente.entidad_responsable == 'Junta Local' %>
+      		<div class="local">
+      			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
+      		</div>
+      		<% elsif meeting.expediente.entidad_responsable == 'Junta Federal' %>
+      		<div class="federal">
+      			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
+			</div>
+      	<% end %>
     </div>
   <% end %>
 <% end %>
