@@ -9,15 +9,15 @@
     		local = naranja
     	-->
     	<% if meeting.expediente.entidad_responsable == 'Burocrático' %>
-    		<div class="buro">
+    		<div class="content-box-buro">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
       		</div>
       		<% elsif meeting.expediente.entidad_responsable == 'Junta Local' %>
-      		<div class="local">
+      		<div class="content-box-local">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
       		</div>
       		<% elsif meeting.expediente.entidad_responsable == 'Junta Federal' %>
-      		<div class="federal">
+      		<div class="content-box-federal">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
 			</div>
       	<% end %>
