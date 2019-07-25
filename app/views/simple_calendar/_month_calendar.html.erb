@@ -1,9 +1,17 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <span class="calendar-title"><%= t('date.month_names')[start_date.month].capitalize %> <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.previous', default: 'Anterior'), calendar.url_for_previous_view %>
-    <%= link_to t('simple_calendar.next', default: 'Siguiente'), calendar.url_for_next_view %>
-  </div><br>
+    <div class="col-md-4">
+    <span><%= link_to t('simple_calendar.previous', default: 'Anterior '), calendar.url_for_previous_view %></span>|
+    <span><%= link_to t('simple_calendar.next', default: ' Siguiente'), calendar.url_for_next_view %></span>
+    
+  </div>
+  <div class="col-md-4">
+    <h3><span class="calendar-title"><%= t('date.month_names')[start_date.month].capitalize %> <%= start_date.year %></span></h3>
+  </div>
+  <div class="col-md-4">
+    
+  </div>
+  </div><br><br>
   <div class="row">
     <div class="col-md-6">
       <span class="content-box-buro">Burocrático</span>

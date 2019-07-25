@@ -15,6 +15,11 @@ class Expediente < ApplicationRecord
 														  :referencia1, :referencia2, :referencia3, :anio], 
 												using:   {tsearch: { prefix: true }}
 
+	
+	scope :expediente_por_anio, -> (anio) {where("anio= ?", anio)}
+
+	scope :expediente_por_entidad, ->(entidad)	{ where("entidad_responsable= ?", entidad.to_s)}
+
   	private
 
   	def to_upper
@@ -22,7 +27,5 @@ class Expediente < ApplicationRecord
   	    [attribute].try(:upcase!)
   	  end
   	end
-
-
 
 end

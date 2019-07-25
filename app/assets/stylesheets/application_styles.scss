@@ -58,7 +58,14 @@ footer {
 .content-box-federal,
 .content-box-purple,
 .content-box-red,
-.content-box-yellow {
+.content-box-yellow,
+.content-box-blue,
+.content-box-grey,
+.content-box-orange,
+.content-box-pink,
+.content-box-black,
+.content-box-brown,
+ {
  
 overflow: hidden;
 padding: 10px;
@@ -80,24 +87,76 @@ border: 1px solid #b2ce96;
 }
 
 .content-box-purple {
+padding: 10px 10px;
 background-color: #e2e2f9;
 border: 1px solid #bebde9;
 }
 
 .content-box-red {
+padding: 10px 10px;
 background-color: #f9dbdb;
-border: 1px solid #e9b3b3;
+border: 1px solid #bebde9;
 }
 
 .content-box-yellow {
+padding: 10px 10px;
 background-color: #fef5c4;
-border: 1px solid #fadf98;
+border: 1px solid #bebde9;
 }
 
+.content-box-blue {
+padding: 10px 10px;
+background-color: #0B2161;
+border: 1px solid #bebde9;
+color: #FFFFFF;
+}
+
+.content-box-grey {
+padding: 10px 10px;
+background-color: #A4A4A4;
+border: 1px solid #bebde9;
+color: #FFFFFF;
+}
+
+.content-box-orange {
+padding: 10px 10px;
+background-color: #FAAC58;
+border: 1px solid #bebde9;
+}
+
+.content-box-pink {
+padding: 10px 10px;
+background-color: #F6CED8;
+border: 1px solid #F6CED8;
+color: #FFFFFF;
+}
+
+.content-box-black {
+padding: 10px 10px;
+background-color: #000000;
+border: 1px solid #bebde9;
+color: #FFFFFF;
+}
+
+
+.content-box-rojo {
+padding: 10px 10px;
+background-color: #F78181;
+border: 1px solid #bebde9;
+color: #FFFFFF;
+}
+
+.content-box-brown {
+padding: 10px 10px;
+background-color: #B18904;
+border: 1px solid #bebde9;
+color: #FFFFFF;
+}
+          
 .anios {
 	position: fixed;  
 	left: 0;  
-	top: 150px;  
+	top: 240px;  
 	z-index: 2000;  
 }
 

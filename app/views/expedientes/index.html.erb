@@ -28,22 +28,22 @@
 
    <div class="anios">
     <ul>
-
-      <li>2020</li>
-      <li>2019</li>
-      <li>2018</li>
-      <li>2017</li>
-      <li>2016</li>
-      <li>2015</li>
-      <li>2014</li>
-      <li>2013</li>
+      <li class="content-box-brown">2020</li>
+      <li class="content-box-pink">2019</li>
+      <li class="content-box-buro">2018</li>
+      <li class="content-box-orange">2017</li>
+      <li class="content-box-federal">2016</li>
+      <li class="content-box-rojo">2015</li>
+      <li class="content-box-grey">2014</li>
+      <li class="content-box-purple">2013</li>
+      <li class="content-box-blue">2012</li>
+      <li class="content-box-black">2011</li>
     </ul>
   </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Año</th>
       <th>Expediente</th>
       <th>Demandante</th>
       <th>Demandado</th>
@@ -55,23 +55,41 @@
   <tbody>
     <% @expedientes.each do |expediente| %>
       <tr>
-        <td><%= expediente.anio %></td>
-        <td><%= link_to expediente.expediente, expediente %></td>
+        <% if expediente.anio < 2012 %>
+        <td class="content-box-black"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2012 %>
+          <td class="content-box-blue"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2013 %>
+          <td class="content-box-purple"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2014 %>
+          <td class="content-box-grey"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2015 %>
+          <td class="content-box-rojo"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2016 %>
+          <td class="content-box-federal"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2017 %>
+          <td class="content-box-orange"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2018 %>
+          <td class="content-box-buro"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2019 %>
+          <td class="content-box-pink"><%= link_to expediente.expediente, expediente  %></td>
+        <% elsif expediente.anio == 2020 %>
+          <td class="content-box-brown"><%= link_to expediente.expediente, expediente  %></td>
+        <% end %>
+
         <td><%= expediente.demandante %></td>
         <td><%= expediente.demandado %></td>
         <% if expediente.entidad_responsable == 'Junta Federal' || expediente.entidad_responsable == 'JUNTA FEDERAL' %>
           <td class="content-box-federal"><%= expediente.entidad_responsable %></td>
         <% elsif expediente.entidad_responsable == 'Junta Local' || expediente.entidad_responsable == 'JUNTA LOCAL'  %>
           <td class="content-box-local"><%= expediente.entidad_responsable %></td>
-        <% elsif expediente.entidad_responsable == 'Burocrático' || 'BURÓCRATICO'  %>
+        <% elsif expediente.entidad_responsable == 'Burocrático' || 'BUROCRÀTICO'  %>
           <td class="content-box-Buro"><%= expediente.entidad_responsable %></td>
         <% else %>
           <td><%= expediente.entidad_responsable %></td>
         <% end %>
         <td><%= expediente.estado_procesal %></td>
 
-         
-         
       </tr>
     <% end %>
   </tbody>
