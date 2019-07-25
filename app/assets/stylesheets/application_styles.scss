@@ -65,6 +65,7 @@ footer {
 .content-box-pink,
 .content-box-black,
 .content-box-brown,
+.content-box-holiday,
  {
  
 overflow: hidden;
@@ -127,7 +128,7 @@ border: 1px solid #bebde9;
 .content-box-pink {
 padding: 10px 10px;
 background-color: #F6CED8;
-border: 1px solid #F6CED8;
+border: 1px solid #bebde9;
 color: #FFFFFF;
 }
 
@@ -150,6 +151,13 @@ color: #FFFFFF;
 padding: 10px 10px;
 background-color: #B18904;
 border: 1px solid #bebde9;
+color: #FFFFFF;
+}
+
+.content-box-holiday {
+padding: 10px 10px;
+background-color: #D8D8D8;
+border: 1px solid #d8d8d8;
 color: #FFFFFF;
 }
           

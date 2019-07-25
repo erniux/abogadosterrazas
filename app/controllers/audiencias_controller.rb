@@ -3,6 +3,7 @@ class AudienciasController < ApplicationController
   
 	def index
 		@audiencias = AudienciaExpediente.all 
+    @vacaciones = Holiday.all
 
 	end
 

@@ -1,0 +1,31 @@
+<h3>Próximas Audiencias</h3><br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Expediente</th>
+      <th>Demandante</th>
+      <th>Demandado</th>
+      <th>Entidad Responsable</th>
+      <th>Estado Procesal</th>
+      <th>Fecha y Hora</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @audiencias.each do |audiencia| %>
+      <tr>
+        <td><%= audiencia.expediente.expediente %></td>
+        <td><%= audiencia.expediente.demandante %></td> 
+        <td><%= audiencia.expediente.demandado %></td> 
+        <td><%= audiencia.expediente.entidad_responsable %></td> 
+        <td><%= audiencia.expediente.estado_procesal %></td> 
+        <td><%= audiencia.fecha %></td> 
+        <td><%= audiencia.comentarios %></td> 
+
+        <% end %>
+  </tbody>
+</table>
+
+
+
+

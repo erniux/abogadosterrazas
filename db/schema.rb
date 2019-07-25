@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_150300) do
+ActiveRecord::Schema.define(version: 2019_07_25_192908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 2019_07_22_150300) do
     t.integer "anio"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_expedientes_on_user_id"
+  end
+
+  create_table "holidays", force: :cascade do |t|
+    t.datetime "fecha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "asignado"
+    t.text "comentarios"
+    t.text "expediente_id"
+    t.text "estatus", default: "festivo"
   end
 
   create_table "users", force: :cascade do |t|

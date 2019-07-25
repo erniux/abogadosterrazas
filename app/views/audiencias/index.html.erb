@@ -1,9 +1,15 @@
-<%= month_calendar attribute: :fecha, events: @audiencias do |date, meetings| %>
+<%= month_calendar attribute: :fecha, events: (@audiencias + @vacaciones) do |date, meetings| %>
   <%= date.day %>
 
   <% meetings.each do |meeting| %>
     <div>
-    	<% if meeting.expediente.entidad_responsable == 'Burocrático' %>
+       
+      <% if  meeting.estatus == "vacaciones" %>
+        <div class="content-box-holiday">
+          <%= meeting.asignado %>
+        </div>
+      <% else %>
+    	 <% if meeting.expediente.entidad_responsable == 'Burocrático' %>
     		<div class="content-box-buro">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
       		</div>
@@ -14,8 +20,9 @@
       		<% elsif meeting.expediente.entidad_responsable == 'Junta Federal' %>
       		<div class="content-box-federal">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
-			</div>
+			    </div>
       	<% end %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
