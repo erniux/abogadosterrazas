@@ -1,7 +1,7 @@
 <div>
 	<h3>Catálogo de Expedientes</h3>
 
-  <%= form_tag expedientes_path, method: :get do %>
+  <%= form_tag audit_logs_path, method: :get do %>
   <div class="row">
     <div class="col-md-6">
       <%= text_field_tag 'term', params[:term], placeholder: "Ingrese criterio de búsqueda", class: "form-control" %>

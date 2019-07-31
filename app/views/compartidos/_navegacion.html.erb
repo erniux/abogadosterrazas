@@ -32,8 +32,8 @@
           <li><%= link_to "expedientes", expedientes_path %></li>
           <% if current_user.has_role?(:admin) %>
             <li><%= link_to "audiencias", audiencias_path %></li>
-            <li><%= link_to "bitácora", root_path %></li>
-            <li><%= link_to "catálogos", root_path %></li> 
+            <li><%= link_to "bitácora", audit_logs_path %></li>
+            <li><%= link_to "catálogos", paginas_catalogos_path %></li> 
             <% end %>
         <% end %>
       </ul>
