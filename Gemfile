@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'cocoon', '~> 1.2', '>= 1.2.14'
@@ -21,8 +22,7 @@ gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'petergate', '~> 2.0', '>= 2.0.1'
 gem 'simple_calendar', '~> 2.3'	
-
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
