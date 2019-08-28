@@ -1,4 +1,11 @@
+<div class="video">
+  <% if current_user.has_role?(:admin) %>
+    <%= video_tag('2019tuyyo.mp4', width: 500, height: 500, autoplay: true, muted: false, controls: true, loop: false, muted: true, poster: '') %>
+  <% end %>
+</div>
+
 <h3>Próximas Audiencias</h3><br>
+
 <table class="table">
   <thead>
     <tr>

@@ -61,5 +61,8 @@ Rails.application.configure do
 
   config.i18n.fallbacks = [:es, :en]
 
+  config.assets.compile = true
+  config.serve_static_files = true
+
    
 end
