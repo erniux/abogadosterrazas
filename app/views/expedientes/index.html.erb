@@ -12,10 +12,9 @@
   </div>
   <% end %>
    
-   <% if params[:term].blank? %>
-    <p><%= link_to_previous_page @expedientes, 'Previa', class: 'btn btn-primary btn-sm'  %>
-       <%= link_to_next_page @expedientes, 'Siguiente', class: 'btn btn-primary btn-sm' %></p>
-   <% end %>
+  <div class="text-center">
+    <%= paginate @expedientes %>
+  </div>
 
    <br>
     <div class="row">

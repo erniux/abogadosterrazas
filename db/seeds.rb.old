@@ -1,0 +1,21 @@
+  
+expedientes = Expediente.all.ids
+expedientes_tot = Expediente.all.count
+audiencia_expedientes = []
+
+50.times do |i|
+	nueva_audiencia = {
+		fecha: Faker::Date.between(from: Date.today, to: 7.days.from_now),
+		asignado: 'JLTA',
+		comentarios: Faker::Lorem.paragraphs(number: 3),
+		expediente_id: expedientes[Random.rand(0..expedientes_tot)],
+		estatus: 'Diferida por Pláticas'
+	}
+
+	audiencia_expedientes.push(nueva_audiencia)
+end
+
+AudienciaExpediente.create(audiencia_expedientes)
+p "50 expedientes creados"
+
+ 

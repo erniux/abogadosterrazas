@@ -9,15 +9,15 @@
           <%= meeting.asignado %>
         </div>
       <% else %>
-    	 <% if meeting.expediente.entidad_responsable == 'Burocrático' %>
+    	 <% if meeting.expediente.entidad_responsable == 'BUROCRÁTICO' %>
     		<div class="content-box-buro">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
       		</div>
-      		<% elsif meeting.expediente.entidad_responsable == 'Junta Local' %>
+      		<% elsif meeting.expediente.entidad_responsable == 'JUNTA LOCAL' %>
       		<div class="content-box-local">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
       		</div>
-      		<% elsif meeting.expediente.entidad_responsable == 'Junta Federal' %>
+      		<% elsif meeting.expediente.entidad_responsable == 'JUNTA FEDERAL' %>
       		<div class="content-box-federal">
       			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
 			    </div>

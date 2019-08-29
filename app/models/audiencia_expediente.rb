@@ -7,9 +7,6 @@ class AudienciaExpediente < ApplicationRecord
   pg_search_scope :search_audiencia, against: [:fecha, :asignado], 
                         using:   {tsearch: { prefix: true }}
 
-     
-
-
   private
 
   def to_upper

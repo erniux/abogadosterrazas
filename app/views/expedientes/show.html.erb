@@ -22,7 +22,7 @@
 		<% if !@expediente.referencia3.nil? %>
 			<p><%= @expediente.referencia3.upcase %> </p>
 		<% end %>
-		<p>COMENTARIOS: <%= @expediente.comentarios.upcase %></p>
+		<p>COMENTARIOS: <%= @expediente.comentarios.to_s.upcase %></p>
 		
 	</div>
 </div>	 

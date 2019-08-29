@@ -23,6 +23,7 @@ gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'petergate', '~> 2.0', '>= 2.0.1'
 gem 'simple_calendar', '~> 2.3'	
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'faker', '~> 2.2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

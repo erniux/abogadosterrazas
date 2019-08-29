@@ -1,37 +1,57 @@
-<!--<div class="video">
-  <% if current_user.has_role?(:admin) %>
-    <%= video_tag('2019tuyyo.mp4', width: 500, height: 500, autoplay: true, muted: false, controls: true, loop: false, muted: true, poster: '') %>
-  <% end %>
-</div> -->
+<% if @audiencias.blank? %>
+  <div class="alert alert-warning">
+    <strong>No existen registros</strong>
+  </div> 
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'compartidos/sidebar' %>
+      </div><!-- /.col-md-3 -->
+      
+      <div class="col-md-9">
+        <div class="panel panel-default">
+          <div class="text-center">
+            <%= paginate @audiencias %>
+          </div>
+          <table class="table">
+            <% @audiencias.each do |audiencia| %>
+              <tr>
+                <td class="middle">
+                  <div class="media">
+                    <div class="media-body">
+                      <h4 class="media-heading"><%= audiencia.expediente.expediente %></h4>
+                      <address>
+                        <strong><%= audiencia.expediente.demandante %> vs <%= audiencia.expediente.demandado %></strong><br>
+                        <p><%= audiencia.expediente.entidad_responsable %></p>
+                        <p><%= audiencia.expediente.estado_procesal %></p>
+                        <p>Fecha Audiencia: <%= audiencia.fecha.strftime("%F %T") %></p>
+                      </address>
+                    </div>
+                  </div>
+                </td>
+                <td width="100" class="middle">
+                  <div>
+                    <a href="#" class="btn btn-circle btn-default btn-xs" title="Edit">
+                      <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a href="#" class="btn btn-circle btn-danger btn-xs" title="Edit">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </table>            
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 
-<h3>Próximas Audiencias</h3><br>
+ 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Expediente</th>
-      <th>Demandante</th>
-      <th>Demandado</th>
-      <th>Entidad Responsable</th>
-      <th>Estado Procesal</th>
-      <th>Fecha y Hora</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @audiencias.each do |audiencia| %>
-      <tr>
-        <td><%= audiencia.expediente.expediente %></td>
-        <td><%= audiencia.expediente.demandante %></td> 
-        <td><%= audiencia.expediente.demandado %></td> 
-        <td><%= audiencia.expediente.entidad_responsable %></td> 
-        <td><%= audiencia.expediente.estado_procesal %></td> 
-        <td><%= audiencia.fecha %></td> 
-        <td><%= audiencia.comentarios %></td> 
-
-        <% end %>
-  </tbody>
-</table>
+ 
 
 
 
