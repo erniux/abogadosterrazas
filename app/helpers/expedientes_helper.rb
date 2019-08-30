@@ -38,15 +38,12 @@ module ExpedientesHelper
 			content_tag(:td, entidad_responsable, class: "content-box-federal")
 		when  'Junta Local', 'JUNTA LOCAL'  
 			content_tag(:td, entidad_responsable, class: "content-box-local")
-		when  'Burocrático',  'BUROCRÁTICO', 'Burocratico'
-			content_tag(:td, entidad_responsable, class: "content-box-Buro") 
+		when  'Burocrático', 'BUROCRÁTICO' 
+			content_tag(:td, entidad_responsable, class: "content-box-buro") 
 		else
 			content_tag(:td, entidad_responsable)
 		end
 	end
-
-	 
-
 
 
 #concat(link_to 'root link', root_path)

@@ -2,45 +2,23 @@
 	<h3>Catálogo de Expedientes</h3>
 
   <%= form_tag expedientes_path, method: :get do %>
-  <div class="row">
-    <div class="col-md-6">
+  <div class="input-group">
       <%= text_field_tag 'term', params[:term], placeholder: "Ingrese criterio de búsqueda", class: "form-control" %>
+      <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </span>
     </div>
-    <div class="col-md-6">
-      <%= submit_tag 'Buscar', class: "btn btn-info btn-lg" %>&nbsp;<%= link_to "Crear Expediente", new_expediente_path, class: "btn btn-primary btn-lg" %>
-    </div>
-  </div>
   <% end %>
-   
+
   <div class="text-center">
     <%= paginate @expedientes %>
   </div>
 
    <br>
-    <div class="row">
-      <div class="col-md-6">
-        <span class="content-box-buro">Burocrático</span>
-        <span class="content-box-local">Junta Local</span>
-        <span class="content-box-federal">Junta Federal</span>
-      </div>
-    </div><br>
 
-   <div class="list-group">
-    <ul>
-      <li class="content-box-brown">2020</li>
-      <li class="content-box-pink">2019</li>
-      <li class="content-box-buro">2018</li>
-      <li class="content-box-orange">2017</li>
-      <li class="content-box-federal">2016</li>
-      <li class="content-box-rojo">2015</li>
-      <li class="content-box-grey">2014</li>
-      <li class="content-box-purple">2013</li>
-      <li class="content-box-blue">2012</li>
-      <li class="content-box-black">2011</li>
-    </ul>
-  </div>
-
-<table class="table">
+  <table class="table">
   <thead>
     <tr>
       <th>Expediente</th>
@@ -53,28 +31,28 @@
 
   <tbody>
     <% @expedientes.each do |expediente| %>
-      <tr>
+      <tr> 
         <% case expediente.anio %>
         <% when 2012 %>
-          <td class="content-box-blue"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-blue"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2013 %>
-          <td class="content-box-purple"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-purple"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2014 %>
-          <td class="content-box-grey"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-grey"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2015 %>
-          <td class="content-box-rojo"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-rojo"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2016 %>
-          <td class="content-box-federal"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-federal"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2017 %>
-          <td class="content-box-orange"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-orange"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2018 %>
-          <td class="content-box-buro"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-Buro"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2019 %>
-          <td class="content-box-pink"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-pink"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2020 %>
-          <td class="content-box-brown"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-brown"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% else %>
-          <td class="content-box-black"><%= link_to expediente.expediente, expediente  %></td>
+          <td class="content-box-black"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% end %>
 
         <td><%= expediente.demandante %></td>

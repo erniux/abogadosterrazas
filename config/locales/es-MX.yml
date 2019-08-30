@@ -2,10 +2,10 @@
 es-MX:
   views:
     pagination:
-      first: "&laquo; Primera"
-      last: "Ultima &raquo;"
-      previous: "&lsaquo; Previa"
-      next: "Siguiente &rsaquo;"
+      first: "&laquo; Inicio"
+      last: "Fin &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Sig &rsaquo;"
       truncate: "&hellip;"
 
   gflash:

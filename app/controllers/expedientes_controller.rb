@@ -5,9 +5,9 @@ class ExpedientesController < ApplicationController
   def index
     #@expedientes = Expediente.all.order("anio DESC")
     if params[:term]
-      @expedientes = Expediente.search_by_full_expediente(params[:term]) 
+      @expedientes = Expediente.search_by_full_expediente(params[:term]).page(params[:page])
     elsif params[:term].blank?
-      @expedientes = Expediente.all.order(anio: 'DESC', expediente: 'DESC').page(params[:page]).per(11).padding(4)
+      @expedientes = Expediente.all.order(updated_at: 'DESC', expediente: 'DESC').page(params[:page]) 
     end 
 
   end
