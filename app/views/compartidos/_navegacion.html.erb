@@ -37,10 +37,10 @@
         
         </ul>
       <div class="nav navbar-right navbar-btn">
-        <a href="form.html" class="btn btn-default">
+        <%= link_to  new_expediente_path, class: "btn btn-default" do %>
           <i class="glyphicon glyphicon-plus"></i> 
           Nuevo Expediente
-        </a>
+        <% end %>
       </div>
       <% end %>
     </div>

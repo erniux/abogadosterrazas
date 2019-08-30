@@ -12,65 +12,65 @@
 
   <div class="row">
   	<div class="col-md-2">
-    	<%= form.text_field :anio, placeholder: 'Año', :autofocus => true %>
+    	<%= form.text_field :anio, placeholder: 'Año', :autofocus => true, class: "form-control" %>
 	</div>
 
 	<div class="col-md-2">
-    	<%= form.text_field :expediente, placeholder: 'Número de Expediente' %>
+    	<%= form.text_field :expediente, placeholder: 'Número de Expediente', class: "form-control" %>
 	</div>
 
 	<div class="col-md-2">
-    	<%= form.text_field :demandante, placeholder: 'Demandante' %>
+    	<%= form.text_field :demandante, placeholder: 'Demandante', class: "form-control" %>
 	</div>
 
 	<div class="col-md-2">
-    	<%= form.text_field :demandado, placeholder: 'Demandado' %>
-	</div>
+    	<%= form.text_field :demandado, placeholder: 'Demandado', class: "form-control" %>
+	</div><br>
 
 	<div class="col-md-2">
-		Instancia: <%= form.select :entidad_responsable, ['Junta Local', 'Junta Federal', 'Burocrático'] %>
+		Instancia: <%= form.select :entidad_responsable, ['Junta Local', 'Junta Federal', 'Burocrático'], class: "form-control" %>
 		 
-	</div>
+	</div><br>
 
 	<div class="col-md-2">
-    	<%= form.text_field :socio, placeholder: 'Abogado' %>
+    	<%= form.text_field :socio, placeholder: 'Abogado', class: "form-control" %>
 	</div>
 </div><br>
 <div class="row">
 	<div class="col-md-5">
     	Estado Procesal: <%= form.select :estado_procesal, ['Pendiente', 'Para Audiencia', 'Para Resolución Incidental', 'Para Pruebas','Para Desahogo de Pruebas', 'Para Informes', 'Para Desahogo Testimonial', 
-    						'Para Alegatos', 'Para Ejecucion', 'Para Laudo', 'Para Amparo', 'En Amparo']  %>
-	</div>
+    						'Para Alegatos', 'Para Ejecucion', 'Para Laudo', 'Para Amparo', 'En Amparo'], class: "form-control"  %>
+	</div><br>
   	<div class="col-md-1">Referencias</div>
   	<div class="col-md-2">
-    	<%= form.text_field :referencia1, placeholder: 'Referencia 1' %>
+    	<%= form.text_field :referencia1, placeholder: 'Referencia 1', class: "form-control" %>
     </div>
     <div class="col-md-2">
-    	<%= form.text_field :referencia2, placeholder: 'Referencia 2' %>
+    	<%= form.text_field :referencia2, placeholder: 'Referencia 2', class: "form-control" %>
     </div>
     <div class="col-md-2">
-    	<%= form.text_field :referencia3, placeholder: 'Referencia 3' %>
+    	<%= form.text_field :referencia3, placeholder: 'Referencia 3', class: "form-control" %>
   </div>
 </div>
 
   <div class="row">
 	<hr><h3>Expediente</h3>
 	<div class="col-md-2">
-    	<%= form.text_field :ubicacion_fisica, placeholder: 'Ubicación Física' %>
+    	<%= form.text_field :ubicacion_fisica, placeholder: 'Ubicación Física', class: "form-control" %>
 	</div>
 
 	<div class="col-md-2">
-    	<%= form.text_field :despacho, placeholder: 'Despacho' %>
+    	<%= form.text_field :despacho, placeholder: 'Despacho' , class: "form-control"%>
 	</div>
 
-	<div class="field">
-    <%= form.text_field :archivo, placeholder: 'Nombre de Archivo' %>
+	<div class="col-md-2">
+    <%= form.text_field :archivo, placeholder: 'Nombre de Archivo', class: "form-control" %>
   </div>
 </div>
 <br>
 <div class="row">
   <div class="col-md-12">
-    <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 6 %>
+    <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 6, class: "form-control" %>
   </div>
 </div>
 
