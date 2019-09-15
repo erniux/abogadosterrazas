@@ -3,10 +3,7 @@ class PaginasController < ApplicationController
   	@inicio_semana = Date.today
   	@fin_semana = @inicio_semana + 7.days
   	@audiencias = AudienciaExpediente.where('fecha >= ? and fecha < ?', @inicio_semana, @fin_semana).order("fecha ASC").page(params[:page]) 
-  end
-
-  def catalogos
-  end
+  end 
 
   def años
   end

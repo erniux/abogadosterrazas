@@ -1,0 +1,3 @@
+class EstatusProcesal < ApplicationRecord
+	 
+end

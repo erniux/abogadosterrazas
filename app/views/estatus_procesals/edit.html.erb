@@ -1,0 +1,5 @@
+<%= form_with(model: @estatus_procesal, local: true) do |form| %>
+  <%= form.text_field :estatus %>
+  <%= form.submit "Guardar", class: 'btn btn-success' %>
+<% end %>
+<%= link_to "Regresar a Catálogo", estatus_procesals_path, class: "btn btn-primary" %>

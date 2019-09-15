@@ -4,10 +4,12 @@ class Expediente < ApplicationRecord
 	before_save :to_upper
 	belongs_to :user
 	has_many :audiencia_expedientes, inverse_of: :expediente 
+	has_many :estatus_procesals
+	 
 
 	
 	validates_uniqueness_of :expediente
-	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho
+	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho, :estatus_procesal_id
 	
 	accepts_nested_attributes_for :audiencia_expedientes, reject_if: :all_blank, allow_destroy: true
 

@@ -3,7 +3,9 @@
 		<h3>Número Expediente: <%= @expediente.expediente %>&nbsp;&nbsp;Año: <%= @expediente.anio %></h3>
 		<h4><%= @expediente.demandante  %> <strong>vs</strong> <%= @expediente.demandado %></h4>
 		<h5>INSTANCIA: <%= @expediente.entidad_responsable.upcase %></h5>
-		<h5>ESTADO PROCESAL: <%= @expediente.estado_procesal.upcase %></h5>
+		<h5>ESTADO PROCESAL:<% estatus = EstatusProcesal.where(id: @expediente.estatus_procesal_id) %>
+		<%= estatus.first.estatus.upcase %></h5>
+
 	</div>
 	<div class="col-md-6">
 		<h3>EXPEDIENTE</h3>
@@ -51,7 +53,11 @@
 				<td><%= audiencia.expediente.entidad_responsable.upcase %></td>
 				<td><%= audiencia.asignado.upcase %></td>
 				<td><%= audiencia.estatus.upcase %></td>
-				<td><%= audiencia.comentarios.upcase %></td>
+				<% if audiencia.comentarios.nil? %>
+					<td><%= audiencia.comentarios %></td>
+				<% else %>
+					<td><%= audiencia.comentarios.upcase %></td>
+				<% end %>
 			</tr>
 		<% end %>
 	</tbody>

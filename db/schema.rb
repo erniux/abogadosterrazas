@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_192908) do
+ActiveRecord::Schema.define(version: 2019_09_15_183913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 2019_07_25_192908) do
     t.index ["user_id"], name: "index_audit_logs_on_user_id"
   end
 
+  create_table "estatus_procesals", force: :cascade do |t|
+    t.string "estatus"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "expedientes", force: :cascade do |t|
     t.string "expediente"
     t.string "demandante"
@@ -75,6 +81,8 @@ ActiveRecord::Schema.define(version: 2019_07_25_192908) do
     t.text "archivo"
     t.integer "anio"
     t.bigint "user_id"
+    t.bigint "estatus_procesal_id"
+    t.index ["estatus_procesal_id"], name: "index_expedientes_on_estatus_procesal_id"
     t.index ["user_id"], name: "index_expedientes_on_user_id"
   end
 
@@ -109,5 +117,6 @@ ActiveRecord::Schema.define(version: 2019_07_25_192908) do
 
   add_foreign_key "audiencia_expedientes", "expedientes"
   add_foreign_key "audit_logs", "users"
+  add_foreign_key "expedientes", "estatus_procesals"
   add_foreign_key "expedientes", "users"
 end

@@ -1,19 +1,21 @@
 <div class="nested-fields">
+  <p>
 	<div class="row">
 		<div class="col-md-2">
        <%= f.datetime_field :fecha, placeholder: 'Fecha y Hora', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
-  	</div><br>
+  	</div>
   		<div class="col-md-3">
   			<%= f.text_field :asignado, placeholder: 'Asignado a', size: 40, class: "form-control" %>
   		</div>
   		<div class="col-md-4">
   			<%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2, class: "form-control"  %>
-  		</div><br>
+  		</div>
       <div class="col-md-2">
         Estatus: <%= f.select :estatus, ['Pendiente', 'Falta Notificación', 'Diferida por Pláticas', 'No llegó el exhorto', 'Por incidente', 'Desahogo y pendiente de pruebas'], class: "form-control" %>
       </div>
   	</div>
-</div>  <br>    
+  </p>
+</div>     
 
 
 <script type="text/javascript">

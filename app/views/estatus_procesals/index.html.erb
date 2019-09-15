@@ -1,0 +1,25 @@
+<div class="container">
+	<h4>Catálogo de Estados Procesales para Expedientes</h4>
+	<%= link_to "Agregar Estado Procesal", new_estatus_procesal_path, class: "btn btn-primary" %>
+	<%= link_to "Regresar a Expedientes", expedientes_path, class: "btn btn-info" %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>estatus</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @estatus_procesals.each do |estatus| %>
+				<tr>
+					<td><%= estatus.id %></td>
+					<td><%= estatus.estatus %></td>
+					<td><%= link_to 'Editar', edit_estatus_procesal_path(estatus) %></td>
+					<td><%= link_to 'Eliminar', estatus, method: :delete, data: { confirm: '¿Confirma eliminar el Registro?' } %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+ 
