@@ -1,0 +1,6 @@
+<%= form_with(model: @holiday, local: true) do |form| %>
+  <%= form.date_field :fecha, placeholder: 'Fecha aaaa-mm-dd' %>
+  <%= form.text_area :expediente_id, cols:50, rows: 2, placeholder: 'Descripción' %>
+  <%= form.submit "Guardar", class: 'btn btn-success' %>
+<% end %>
+<%= link_to "Regresar a Catálogo", holidays_path, class: "btn btn-primary" %>

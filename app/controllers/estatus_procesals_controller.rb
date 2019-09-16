@@ -30,7 +30,7 @@ class EstatusProcesalsController < ApplicationController
   	def update
   	  respond_to do |format|
   	    if @estatus_procesal.update(estatus_procesal_params)
-  	      format.html { redirect_to @estatus_procesal, notice: 'Regsitro actualizado correctamente.' }
+  	      format.html { redirect_to  estatus_procesals_path, notice: 'Regsitro actualizado correctamente.' }
   	    else
   	      format.html { render :edit }
   	    end
@@ -38,10 +38,15 @@ class EstatusProcesalsController < ApplicationController
   	end
 
   	def destroy
-  	  @estatus_procesal.destroy
+  	  if @estatus_procesal.destroyed?
   	  respond_to do |format|
   	    format.html { redirect_to estatus_procesals_path, notice: 'Regsitro eliminado correctamente.' }
   	  end
+  	else
+  		respond_to do |format|
+  	    format.html { redirect_to estatus_procesals_path, alert: 'No es Posible eliminar el Estatus, existen expedientes con el estatus seleccionado.' }
+  	  end
+  	end
   	end
 
   	private

@@ -11,7 +11,8 @@
   			<%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2, class: "form-control"  %>
   		</div>
       <div class="col-md-2">
-        Estatus: <%= f.select :estatus, ['Pendiente', 'Falta Notificación', 'Diferida por Pláticas', 'No llegó el exhorto', 'Por incidente', 'Desahogo y pendiente de pruebas'], class: "form-control" %>
+        Estatus:&nbsp;  
+        <%= f.collection_select :estatus_audiencia_id, EstatusAudiencia.order(:estatus),:id,:estatus, include_blank: true %> 
       </div>
   	</div>
   </p>

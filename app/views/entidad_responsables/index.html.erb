@@ -1,0 +1,24 @@
+<div class="container">
+	<h4>Catálogo de Entidades Responsables</h4>
+	<%= link_to "Agregar Entidad", new_entidad_responsable_path, class: "btn btn-primary" %>
+	<%= link_to "Regresar a Expedientes", expedientes_path, class: "btn btn-info" %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Entidad</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @entidad_responsables.each do |entidad| %>
+				<tr>
+					<td><%= entidad.id %></td>
+					<td><%= entidad.nombre %></td>
+					<td><%= link_to 'Editar', edit_entidad_responsable_path(entidad) %></td>
+					<td><%= link_to 'Eliminar', entidad, method: :delete, data: { confirm: '¿Confirma eliminar el Registro?' } %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -5,6 +5,8 @@ class Expediente < ApplicationRecord
 	belongs_to :user
 	has_many :audiencia_expedientes, inverse_of: :expediente 
 	has_many :estatus_procesals
+	has_many :estatus_audiencias
+	has_many :entidad_responsables
 	 
 
 	

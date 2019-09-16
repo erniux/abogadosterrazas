@@ -7,8 +7,11 @@ Rails.application.routes.draw do
 
   resources :expedientes
   resources :estatus_procesals
+  resources :estatus_audiencias
+  resources :entidad_responsables
   resources :audiencias
   resources :audit_logs
+  resources :holidays
 
 root to: "paginas#inicio" 
 

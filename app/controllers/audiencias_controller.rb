@@ -13,6 +13,6 @@ class AudienciasController < ApplicationController
     end
 
     def audiencia_params
-      params.require(:audiencia_expediente).permit(:fecha, :asignado, :comentario, :expediente_id)
+      params.require(:audiencia_expediente).permit(:fecha, :asignado, :comentario, :expediente_id, :estatus_audiencia_id)
     end
 end

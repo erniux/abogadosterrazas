@@ -8,29 +8,21 @@
   <div class="col-md-4">
     <h3><span class="calendar-title"><%= t('date.month_names')[start_date.month].capitalize %> <%= start_date.year %></span></h3>
   </div>
-  <div class="col-md-4">
-    
-  </div>
+   
   </div><br><br>
-  <div class="row">
-    <div class="col-md-3">
-      <p class="content-box-buro">BUROCRÁTICO</p>
-      <p class="content-box-local">JUNTA LOCAL</p>
-      <p class="content-box-federal">JUNTA FEDERAL</p>
-    </div>
-  </div><br>
+   
 
   <table class="table table-striped">
     <thead>
       <tr>
-        <% date_range.slice(0, 5).each do |day| %>
+        <% date_range.slice(0, 7).each do |day| %>
           <th><%= t('date.abbr_day_names')[day.wday] %></th>
         <% end %>
       </tr>
     </thead>
 
     <tbody>
-      <% date_range.each_slice(5) do |week| %>
+      <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>

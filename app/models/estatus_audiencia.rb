@@ -1,0 +1,2 @@
+class EstatusAudiencia < ApplicationRecord
+end

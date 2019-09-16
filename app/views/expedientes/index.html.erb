@@ -46,7 +46,7 @@
         <% when 2017 %>
           <td class="content-box-orange"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2018 %>
-          <td class="content-box-Buro"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
+          <td class="content-box-buro"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2019 %>
           <td class="content-box-pink"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% when 2020 %>
@@ -57,10 +57,10 @@
 
         <td><%= expediente.demandante %></td>
         <td><%= expediente.demandado %></td>
-        <%= color_entidad expediente.entidad_responsable %>
-        <td><%= expediente.estado_procesal %></td>
-
-
+        <% instancia = EntidadResponsable.where(id: expediente.entidad_responsable_id) %>
+        <%= color_entidad instancia.first.nombre %>
+        <td><% estatus = EstatusProcesal.where(id: expediente.estatus_procesal_id) %>
+            <%= estatus.first.estatus.upcase %></td>
       </tr>
     <% end %>
   </tbody>

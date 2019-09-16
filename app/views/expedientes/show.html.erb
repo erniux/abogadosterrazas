@@ -2,7 +2,8 @@
 	<div class="col-md-6">
 		<h3>Número Expediente: <%= @expediente.expediente %>&nbsp;&nbsp;Año: <%= @expediente.anio %></h3>
 		<h4><%= @expediente.demandante  %> <strong>vs</strong> <%= @expediente.demandado %></h4>
-		<h5>INSTANCIA: <%= @expediente.entidad_responsable.upcase %></h5>
+		<h5>INSTANCIA: <% instancia = EntidadResponsable.where(id: @expediente.entidad_responsable_id) %>
+		<%= instancia.first.nombre.upcase %> </h5>
 		<h5>ESTADO PROCESAL:<% estatus = EstatusProcesal.where(id: @expediente.estatus_procesal_id) %>
 		<%= estatus.first.estatus.upcase %></h5>
 
@@ -50,9 +51,11 @@
 				<td><%= audiencia.id %></td>
 				<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha.nil? %></td>
 				<td><%= audiencia.expediente.expediente %></td> 
-				<td><%= audiencia.expediente.entidad_responsable.upcase %></td>
+				<td><% instancia = EntidadResponsable.where(id: audiencia.expediente.entidad_responsable_id) %>
+				<%= instancia.first.nombre.upcase %></td>
 				<td><%= audiencia.asignado.upcase %></td>
-				<td><%= audiencia.estatus.upcase %></td>
+				<td><% estatus = EstatusAudiencia.where(id: audiencia.estatus_audiencia_id) %>
+				<%= estatus.first.estatus.upcase %></td>
 				<% if audiencia.comentarios.nil? %>
 					<td><%= audiencia.comentarios %></td>
 				<% else %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_183913) do
+ActiveRecord::Schema.define(version: 2019_09_16_173157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2019_09_15_183913) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "estatus", default: "0"
+    t.bigint "estatus_audiencia_id"
+    t.index ["estatus_audiencia_id"], name: "index_audiencia_expedientes_on_estatus_audiencia_id"
     t.index ["expediente_id"], name: "index_audiencia_expedientes_on_expediente_id"
   end
 
@@ -57,6 +59,18 @@ ActiveRecord::Schema.define(version: 2019_09_15_183913) do
     t.index ["user_id"], name: "index_audit_logs_on_user_id"
   end
 
+  create_table "entidad_responsables", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "estatus_audiencias", force: :cascade do |t|
+    t.string "estatus"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "estatus_procesals", force: :cascade do |t|
     t.string "estatus"
     t.datetime "created_at", null: false
@@ -82,6 +96,8 @@ ActiveRecord::Schema.define(version: 2019_09_15_183913) do
     t.integer "anio"
     t.bigint "user_id"
     t.bigint "estatus_procesal_id"
+    t.bigint "entidad_responsable_id"
+    t.index ["entidad_responsable_id"], name: "index_expedientes_on_entidad_responsable_id"
     t.index ["estatus_procesal_id"], name: "index_expedientes_on_estatus_procesal_id"
     t.index ["user_id"], name: "index_expedientes_on_user_id"
   end
@@ -115,8 +131,10 @@ ActiveRecord::Schema.define(version: 2019_09_15_183913) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "audiencia_expedientes", "estatus_audiencias"
   add_foreign_key "audiencia_expedientes", "expedientes"
   add_foreign_key "audit_logs", "users"
+  add_foreign_key "expedientes", "entidad_responsables"
   add_foreign_key "expedientes", "estatus_procesals"
   add_foreign_key "expedientes", "users"
 end

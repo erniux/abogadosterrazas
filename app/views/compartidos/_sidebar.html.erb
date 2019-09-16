@@ -1,7 +1,7 @@
 <% @inicio_semana = Date.today %>
 <% @fin_semana = @inicio_semana + 7.days %>
 
-<% @prox_audiencias = Expediente.find_by_sql("select t1.entidad_responsable, count(t1.entidad_responsable) from expedientes t1, audiencia_expedientes t2 where  t2.expediente_id = t1.id and t2.fecha >= '#{@inicio_semana}' and t2.fecha <= '#{@fin_semana}' GROUP BY t1.entidad_responsable" )  %>
+<% @prox_audiencias = Expediente.find_by_sql("select t1.entidad_responsable_id, count(t1.entidad_responsable_id) from expedientes t1, audiencia_expedientes t2 where  t2.expediente_id = t1.id and t2.fecha >= '#{@inicio_semana}' and t2.fecha <= '#{@fin_semana}' GROUP BY t1.entidad_responsable_id" )  %>
  
 <div class="list-group">
    
@@ -18,10 +18,12 @@
   	<% end %>	
   	
   	<% @prox_audiencias.each do |a| %>
-		 <span class= "list-group-item"><%= a.entidad_responsable  %><span class="badge"><%= a.count %></span>	</span>
+    <% instancia = EntidadResponsable.where(id: a.entidad_responsable_id) %>
+		 <span class= "list-group-item"><%= instancia.first.nombre.upcase  %><span class="badge"><%= a.count %></span>	</span>
 		 <% tot_prox_audiencias = tot_prox_audiencias + a.count %>
 	<% end %>
 </div>
+
 
 
 

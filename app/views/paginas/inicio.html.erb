@@ -24,8 +24,10 @@
                       <h4 class="media-heading"><%= link_to audiencia.expediente.expediente, audiencia.expediente %></h4>
                       <address>
                         <strong><%= audiencia.expediente.demandante %> vs <%= audiencia.expediente.demandado %></strong><br>
-                        <p><%= audiencia.expediente.entidad_responsable %></p>
-                        <p><%= audiencia.expediente.estado_procesal %></p>
+                        <% instancia = EntidadResponsable.where(id: audiencia.expediente.entidad_responsable_id) %>
+                        <p><%= instancia.first.nombre.upcase %></p>
+                        <% estatus = EstatusProcesal.where(id: audiencia.expediente.estatus_procesal_id) %>
+                        <p><%= estatus.first.estatus.upcase %></p>
                         <p>Fecha Audiencia: <%= audiencia.fecha.strftime("%F %T") %></p>
                       </address>
                     </div>

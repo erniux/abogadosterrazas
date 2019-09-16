@@ -1,0 +1,27 @@
+<div class="container">
+	<h4>Catálogo de dias Festivos y Vacaciones</h4>
+	<%= link_to "Agregar Fecha", new_holiday_path, class: "btn btn-primary" %>
+	<%= link_to "Regresar a Expedientes", expedientes_path, class: "btn btn-info" %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Fecha</th>
+				<th>Descripción</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @holidays.each do |holiday| %>
+				<tr>
+					<td><%= holiday.id %></td>
+					<td><%= holiday.fecha %></td>
+					<td><%= holiday.expediente_id %></td>
+					<td><%= link_to 'Editar', edit_holiday_path(holiday) %></td>
+					<td><%= link_to 'Eliminar', holiday, method: :delete, data: { confirm: '¿Confirma eliminar el Registro?' } %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+ 

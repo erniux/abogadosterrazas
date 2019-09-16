@@ -1,0 +1,24 @@
+<div class="container">
+	<h4>Catálogo de Estados de las Audiencias</h4>
+	<%= link_to "Agregar Estado Audiencia", new_estatus_audiencia_path, class: "btn btn-primary" %>
+	<%= link_to "Regresar a Expedientes", expedientes_path, class: "btn btn-info" %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>estatus</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @estatus_audiencias.each do |estatus| %>
+				<tr>
+					<td><%= estatus.id %></td>
+					<td><%= estatus.estatus %></td>
+					<td><%= link_to 'Editar', edit_estatus_audiencia_path(estatus) %></td>
+					<td><%= link_to 'Eliminar', estatus, method: :delete, data: { confirm: '¿Confirma eliminar el Registro?' } %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

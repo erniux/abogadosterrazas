@@ -25,19 +25,17 @@
 
 	<div class="col-md-2">
     	<%= form.text_field :demandado, placeholder: 'Demandado', class: "form-control" %>
-	</div><br>
-
-	<div class="col-md-2">
-		Instancia: <%= form.select :entidad_responsable, ['Junta Local', 'Junta Federal', 'Burocrático'], class: "form-control" %>
-		 
-	</div><br>
+	</div>
 
 	<div class="col-md-2">
     	<%= form.text_field :socio, placeholder: 'Abogado', class: "form-control" %>
 	</div>
 </div><br>
 <div class="row">
-  <div class="col-md-5">Estado Procesal:&nbsp;
+  <div class="col-md-2"> Instancia:&nbsp;
+    <%= form.collection_select :entidad_responsable_id, EntidadResponsable.order(:nombre),:id,:nombre, include_blank: true %>  
+  </div>
+  <div class="col-md-3">Estado Procesal:&nbsp;
     <%= form.collection_select :estatus_procesal_id, EstatusProcesal.order(:estatus),:id,:estatus, include_blank: true %>          
 	</div>
   	<div class="col-md-1">Referencias</div>
