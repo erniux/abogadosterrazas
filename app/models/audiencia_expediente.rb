@@ -4,6 +4,7 @@ class AudienciaExpediente < ApplicationRecord
   validates_presence_of :fecha, :asignado, :comentarios, :estatus
 
   belongs_to :expediente
+  belongs_to :estatus_audiencia
   
   before_save :to_upper
 

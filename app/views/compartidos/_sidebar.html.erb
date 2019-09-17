@@ -1,30 +1,30 @@
-<% @inicio_semana = Date.today %>
-<% @fin_semana = @inicio_semana + 7.days %>
-
-<% @prox_audiencias = Expediente.find_by_sql("select t1.entidad_responsable_id, count(t1.entidad_responsable_id) from expedientes t1, audiencia_expedientes t2 where  t2.expediente_id = t1.id and t2.fecha >= '#{@inicio_semana}' and t2.fecha <= '#{@fin_semana}' GROUP BY t1.entidad_responsable_id" )  %>
+ <% @prox_audiencias = Expediente.proximas_audiencias  %>
  
 <div class="list-group">
-   
-  	<%= link_to expedientes_path, class: "list-group-item active" do %>
+    <% active = params[:entidad_responsable_id] == nil || params[:entidad_responsable_id].empty? ? 'active' : '' %>
+    <%= puts active %>
+  	<%= link_to expedientes_path, class: "list-group-item #{active}" do %>
   		Expedientes <span class="badge"><%= Expediente.all.count %></span>
   	<% end %>
-  	<% tot_prox_audiencias = 0 %>
+  	
+    <% tot_prox_audiencias = 0 %>
   	<% @prox_audiencias.each do |a| %>
   		<% tot_prox_audiencias = tot_prox_audiencias + a.count %>
   	<% end %>
 
-  	<%= link_to audiencias_path, class: "list-group-item active" do %>
+  	<%= link_to root_path, class: "list-group-item #{active}" do %>
   		Próximas Audiencias <span class="badge"><%= tot_prox_audiencias %></span>
   	<% end %>	
   	
+    
   	<% @prox_audiencias.each do |a| %>
-    <% instancia = EntidadResponsable.where(id: a.entidad_responsable_id) %>
-		 <span class= "list-group-item"><%= instancia.first.nombre.upcase  %><span class="badge"><%= a.count %></span>	</span>
-		 <% tot_prox_audiencias = tot_prox_audiencias + a.count %>
-	<% end %>
+      <% active = params[:entidad_responsable_id].to_i == a.entidad_responsable_id ?  'active' : '' %>
+      <%= link_to inicio_path(entidad_responsable_id: a.entidad_responsable_id), class: "list-group-item #{active}" do %>
+		    <%= a.entidad_responsable.nombre.upcase  %><span class="badge"><%= a.count %></span>	</span>
+      <% end %>
+	 <% end %>
 </div>
 
-
-
+ 
 
 	

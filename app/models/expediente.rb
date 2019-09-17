@@ -3,12 +3,10 @@ class Expediente < ApplicationRecord
 
 	before_save :to_upper
 	belongs_to :user
+	belongs_to :entidad_responsable
 	has_many :audiencia_expedientes, inverse_of: :expediente 
-	has_many :estatus_procesals
-	has_many :estatus_audiencias
-	has_many :entidad_responsables
-	 
-
+	belongs_to :estatus_procesal
+	
 	
 	validates_uniqueness_of :expediente
 	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho, :estatus_procesal_id
@@ -31,6 +29,16 @@ class Expediente < ApplicationRecord
   	  attributes.keys.each do |attribute|
   	    [attribute].try(:upcase!)
   	  end
+  	end
+
+  	def self.proximas_audiencias
+  		inicio_semana = Date.today 
+		fin_semana = inicio_semana + 7.days
+		prox_audiencias = Expediente.find_by_sql("select t1.entidad_responsable_id, count(t1.entidad_responsable_id) 
+												   from expedientes t1, audiencia_expedientes t2 
+												   where  t2.expediente_id = t1.id and t2.fecha >= '#{inicio_semana}' 
+												   and t2.fecha <= '#{fin_semana}' GROUP BY t1.entidad_responsable_id" )
+ 
   	end
 
 end

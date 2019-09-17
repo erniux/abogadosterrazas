@@ -12,7 +12,7 @@
       <div class="col-md-9">
         <div class="panel panel-default">
           <div class="text-center">
-            <%= paginate @audiencias %>
+             
           </div><hr>
           <h3 class="text-center">Próximas Audiencias</h3><hr>
           <table class="table">
@@ -24,10 +24,8 @@
                       <h4 class="media-heading"><%= link_to audiencia.expediente.expediente, audiencia.expediente %></h4>
                       <address>
                         <strong><%= audiencia.expediente.demandante %> vs <%= audiencia.expediente.demandado %></strong><br>
-                        <% instancia = EntidadResponsable.where(id: audiencia.expediente.entidad_responsable_id) %>
-                        <p><%= instancia.first.nombre.upcase %></p>
-                        <% estatus = EstatusProcesal.where(id: audiencia.expediente.estatus_procesal_id) %>
-                        <p><%= estatus.first.estatus.upcase %></p>
+                        <p><%= audiencia.expediente.entidad_responsable.nombre.upcase %></p>
+                        <p><%= audiencia.estatus_audiencia.estatus.upcase %></p>
                         <p>Fecha Audiencia: <%= audiencia.fecha.strftime("%F %T") %></p>
                       </address>
                     </div>

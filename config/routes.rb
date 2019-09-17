@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'paginas/inicio'
+  get 'paginas/inicio', as: 'inicio'
 
 
   devise_for :users, path: '', path_names: { sign_in: 'ingresar', sign_out: 'Salir', sign_up: 'registrar'}
@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   resources :audiencias
   resources :audit_logs
   resources :holidays
+  
 
-root to: "paginas#inicio" 
+  root to: "paginas#inicio" 
 
 
 end
