@@ -26,6 +26,7 @@
       <th>Demandado</th>
       <th>Entidad Responsable</th>
       <th>Estado Procesal</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -61,6 +62,11 @@
         <%= color_entidad instancia.first.nombre %>
         <td><% estatus = EstatusProcesal.where(id: expediente.estatus_procesal_id) %>
             <%= estatus.first.estatus.upcase %></td>
+            <% if logged_in?( :admin) %>
+            <td><%= link_to expediente, method: :delete, data:{ confirm: '¿Confirma eliminar el registro?'}, class: "btn btn-danger"  do %>
+            <i class="glyphicon glyphicon-trash"></i>
+          <% end %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

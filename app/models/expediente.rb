@@ -1,10 +1,11 @@
 class Expediente < ApplicationRecord
 	include PgSearch::Model
 
+
 	before_save :to_upper
 	belongs_to :user
 	belongs_to :entidad_responsable
-	has_many :audiencia_expedientes, inverse_of: :expediente 
+	has_many :audiencia_expedientes, inverse_of: :expediente, dependent: :destroy 
 	belongs_to :estatus_procesal
 	
 	

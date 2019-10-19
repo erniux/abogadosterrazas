@@ -14,7 +14,9 @@
         Estatus:&nbsp;  
         <%= f.collection_select :estatus_audiencia_id, EstatusAudiencia.order(:estatus),:id,:estatus, include_blank: true %> 
       </div>
-      <div class="col-md-1"><%= link_to_remove_association 'Eliminar', f, class: "btn btn-danger" %></div>
+      <% if logged_in?( :admin) %>
+        <div class="col-md-1"><%= link_to_remove_association '', f, class: "btn btn-danger glyphicon glyphicon-trash" %></div>
+      <% end %>
   	</div>
   </p>
 </div>     
