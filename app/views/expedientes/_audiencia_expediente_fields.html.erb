@@ -2,7 +2,10 @@
   <p>
 	<div class="row">
 		<div class="col-md-2">
-       <%= f.datetime_field :fecha, placeholder: 'Fecha y Hora', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
+       <%= f.datetime_field :fecha, placeholder: 'Fecha y Hora de inicio', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
+  	</div>
+    <div class="col-md-2">
+       <%= f.datetime_field :fecha_fin, placeholder: 'Fecha y Hora de término', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
   	</div>
   		<div class="col-md-3">
   			<%= f.text_field :asignado, placeholder: 'Asignado a', size: 40, class: "form-control" %>

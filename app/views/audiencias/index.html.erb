@@ -8,17 +8,31 @@
           <%= meeting.asignado %>
         </div>
       <% else %>
+	  	<% if !meeting.fecha_fin.nil? %>
+		  <% fecha_fin = ' - ' + meeting.fecha_fin.strftime("%H:%M") %>
+		<% else %>
+			<% fecha_fin = " - 00:00" %>
+		<% end %>
+		  
+		  
+		  
     	 <% if meeting.expediente.entidad_responsable_id == 1 %> <!-- Burocratico -->
     		<div class="content-box-buro">
-      			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
+				  <%= link_to (meeting.expediente.expediente.to_s + ' ' + 
+								 meeting.fecha.strftime("%H:%M").to_s + fecha_fin), 
+								 expediente_path(meeting.expediente.id) %>	
       		</div>
       		<% elsif meeting.expediente.entidad_responsable_id == 2 %> <!-- Junta Local -->
       		<div class="content-box-local">
-      			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
+				  <%= link_to (meeting.expediente.expediente.to_s + ' ' +
+				               meeting.fecha.strftime("%H:%M").to_s + fecha_fin), 
+							   expediente_path(meeting.expediente.id) %>	
       		</div>
       		<% elsif meeting.expediente.entidad_responsable_id == 3 %> <!--Junta Federal -->
       		<div class="content-box-federal">
-      			<%= link_to (meeting.expediente.expediente.to_s + '/' + meeting.fecha.strftime("%H:%M:%S").to_s), expediente_path(meeting.expediente.id) %>	
+				  <%= link_to (meeting.expediente.expediente.to_s + ' ' + 
+							   meeting.fecha.strftime("%H:%M").to_s + fecha_fin), 
+							   expediente_path(meeting.expediente.id) %>	
 			    </div>
       	<% end %>
       <% end %>

@@ -26,7 +26,10 @@
                         <strong><%= audiencia.expediente.demandante %> vs <%= audiencia.expediente.demandado %></strong><br>
                         <p><%= audiencia.expediente.entidad_responsable.nombre.upcase %></p>
                         <p><%= audiencia.estatus_audiencia.estatus.upcase %></p>
-                        <p>Fecha Audiencia: <%= audiencia.fecha.strftime("%F %T") %></p>
+                        <p>Fecha audiencia:&nbsp;<%= audiencia.fecha.strftime("%F") %>&nbsp;
+                                                 <%= audiencia.fecha.strftime("%T") %>&nbsp; 
+                                                  <%= ' - ' + audiencia.fecha_fin.strftime("%T") if !audiencia.fecha_fin.nil? %></p>
+                         
                       </address>
                     </div>
                   </div>

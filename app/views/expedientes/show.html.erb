@@ -33,7 +33,8 @@
 	<thead>
    		<tr>
    			<th>ID</th>
-     		<th>Fecha</th>
+     		<th>Fecha inicio</th>
+			 <th>Fecha término</th>
      		<th>Expediente</th>
      		<th>Instancia</th>
      		<th>Asignado</th>
@@ -48,9 +49,10 @@
 			<tr>
 				<td><%= audiencia.id %></td>
 				<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha.nil? %></td>
+				<td><%= audiencia.fecha_fin.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha_fin.nil? %></td>
 				<td><%= audiencia.expediente.expediente %></td> 
 				<td><%= audiencia.expediente.entidad_responsable.nombre %></td>
-				<td><%= audiencia.asignado.upcase %></td>
+				<td><%= audiencia.asignado.upcase if !audiencia.asignado.nil? %></td>
 				<td><%= audiencia.estatus_audiencia.estatus.upcase %>
 				<% if audiencia.comentarios.nil? %>
 					<td><%= audiencia.comentarios %></td>

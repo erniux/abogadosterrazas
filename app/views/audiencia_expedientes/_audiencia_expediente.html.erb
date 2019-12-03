@@ -7,7 +7,8 @@
           <strong><%= @audiencias.expediente.demandante %> vs <%= @audiencias.expediente.demandado %></strong><br>
           <p><%= @audiencias.expediente.entidad_responsable %></p>
           <p><%= @audiencias.expediente.estado_procesal %></p>
-          <p>Fecha Audiencia: <%= @audiencias.fecha.strftime("%F %T") %></p>
+          <p>Fecha inicio audiencia: <%= @audiencias.fecha.strftime("%F %T") %></p>
+          <p>Fecha fin audiencia: <%= @audiencias.fecha_fin.strftime("%F %T") if !@audiencias.fecha_fin.nil? %></p>
         </address>
       </div>
     </div>
