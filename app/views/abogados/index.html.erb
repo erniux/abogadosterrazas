@@ -1,6 +1,6 @@
-<h4>Catálogo Días festivos y vacaciones </h4>
+<h4>Catálogo Abogados Litigantes </h4>
 <div>
-	<%= form_tag holidays_path, method: :get do %>
+	<%= form_tag abogados_path, method: :get do %>
   		<div class="input-group">
       		<%= text_field_tag 'term', params[:term], placeholder: "Ingrese criterio de búsqueda", class: "form-control" %>
       		<span class="input-group-btn">
@@ -9,9 +9,9 @@
             	</button>
         	</span>
     	</div><br>
-    	<%= link_to new_holiday_path, class: "btn btn-primary", remote: true  do %>
+    	<%= link_to new_abogado_path, class: "btn btn-primary", remote: true  do %>
 			<i class="glyphicon glyphicon-plus"></i>
-				Agregar fecha
+				Agregar Abogado
     	<% end %>
   <% end %>
 </div>
@@ -36,20 +36,22 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>Descripción</th>	
-			<th>Fecha</th>
+			<th>Nombre</th>	
+			<th>Iniciales</th>	
+			<th>Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @holidays.each do |dia| %>
+		<% @abogados.each do |abogado| %>
 			<tr>
-				<td><%= dia.expediente_id %></td>
-				<td><%= dia.fecha.strftime("%d/%m/%Y") %></td>
-				<td><%= link_to  edit_holiday_path(dia), class: "btn btn-info", remote: true  do %>
+				<td><%= abogado.nombre %></td>
+				<td><%= abogado.iniciales %></td>
+				 
+				<td><%= link_to  edit_abogado_path(abogado), class: "btn btn-info", remote: true  do %>
 						<i class="glyphicon glyphicon-pencil"></i>
 					<% end %>
 
-					<%= link_to dia, method: :delete, data:{ confirm: '¿Confirma eliminar el registro?'}, class: "btn btn-danger"  do %>
+					<%= link_to abogado, method: :delete, data:{ confirm: '¿Confirma eliminar el registro?'}, class: "btn btn-danger"  do %>
 						<i class="glyphicon glyphicon-minus"></i>
 					<% end %>
 				</td>
@@ -58,7 +60,3 @@
 
 	</tbody>
 </table>
-
-
- 
- 

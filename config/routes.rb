@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   get 'paginas/inicio', as: 'inicio'
 
 
@@ -12,8 +11,8 @@ Rails.application.routes.draw do
   resources :audiencias
   resources :audit_logs
   resources :holidays
+  resources :abogados
   
-
   root to: "paginas#inicio" 
 
 

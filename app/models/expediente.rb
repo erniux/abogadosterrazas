@@ -24,6 +24,10 @@ class Expediente < ApplicationRecord
 
 	scope :expediente_por_entidad, ->(entidad)	{ where("entidad_responsable= ?", entidad.to_s)}
 
+	def nombre_socio
+		nombre_socio = Abogado.where(id: socio).first.nombre
+	  end
+	  
   	private
 
   	def to_upper
@@ -40,6 +44,8 @@ class Expediente < ApplicationRecord
 												   where  t2.expediente_id = t1.id and t2.fecha >= '#{inicio_semana}' 
 												   and t2.fecha <= '#{fin_semana}' GROUP BY t1.entidad_responsable_id" )
  
-  	end
+	  end
+	    
+	  
 
 end

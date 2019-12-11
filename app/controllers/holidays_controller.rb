@@ -3,7 +3,7 @@ class HolidaysController < ApplicationController
 	access admin: :all
 
 	def index
-		@holidays = Holiday.all
+		@holidays = Holiday.order('fecha')
 	end
 
 	def new

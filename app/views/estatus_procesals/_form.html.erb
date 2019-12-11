@@ -1,0 +1,26 @@
+<%= form_for(@estatus_procesal, html: { multipart: true }, remote: local_assigns[:hide_buttons]) do |form| %>
+<% if @estatus_procesal.errors.any? %>
+      <% @estatus_procesal.errors.full_messages.each do |message| %>
+         <%= js add_gritter(message, title: "Aviso", sticky: false) %>
+      <% end %>
+  <% end %>
+
+<div class="field">
+  <%= form.label :estatus %>
+  <%= form.text_field :estatus, class: "form-control", placeholder: "Nombre" %>
+</div>
+
+  <br>
+  <% unless local_assigns[:hide_buttons] %>
+  <div class="actions">&nbsp;
+    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+      <span><i class="glyphicon glyphicon-pencil"></i> Guardar</span>
+    <% end %>  
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+      <span><i class="glyphicon glyphicon-list"></i></span>
+      Catálogo
+    </button>
+  </div>
+  <% end %>
+
+<% end %>

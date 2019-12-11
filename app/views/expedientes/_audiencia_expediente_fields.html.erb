@@ -1,29 +1,28 @@
 <div class="nested-fields">
+   
   <p>
 	<div class="row">
+  <% if logged_in?( :admin) %>
+    <div class="col-md-1"><%= link_to_remove_association '', f, class: "btn btn-danger glyphicon glyphicon-trash" %></div>
+  <% end %>
 		<div class="col-md-2">
-       <%= f.datetime_field :fecha, placeholder: 'Fecha y Hora de inicio', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
+       <%= f.datetime_field :fecha, placeholder: 'Inicio', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
   	</div>
     <div class="col-md-2">
-       <%= f.datetime_field :fecha_fin, placeholder: 'Fecha y Hora de término', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
+       <%= f.datetime_field :fecha_fin, placeholder: 'Fin',   class: "form-control" %>
   	</div>
-  		<div class="col-md-3">
-  			<%= f.text_field :asignado, placeholder: 'Asignado a', size: 40, class: "form-control" %>
-  		</div>
-  		<div class="col-md-4">
-  			<%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2, class: "form-control"  %>
-  		</div>
-      <div class="col-md-2">
-        Estatus:&nbsp;  
-        <%= f.collection_select :estatus_audiencia_id, EstatusAudiencia.order(:estatus),:id,:estatus, include_blank: true %> 
-      </div>
-      <% if logged_in?( :admin) %>
-        <div class="col-md-1"><%= link_to_remove_association '', f, class: "btn btn-danger glyphicon glyphicon-trash" %></div>
-      <% end %>
+  	<div class="col-md-1">
+      <%= f.collection_select :asignado, Abogado.order(:iniciales),:nombre,:iniciales, include_blank: true %> 
   	</div>
+  	<div class="col-md-2">
+  		<%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2, class: "form-control"  %>
+  	</div>
+    <div class="col-md-2">
+      <%= f.collection_select :estatus_audiencia_id, EstatusAudiencia.order(:estatus),:id,:estatus, include_blank: true %> 
+    </div>  
+  </div>
   </p>
 </div>     
-
 
 <script type="text/javascript">
   $(function () {

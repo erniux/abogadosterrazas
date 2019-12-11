@@ -28,7 +28,7 @@
 	</div>
 
 	<div class="col-md-2">
-    	<%= form.text_field :socio, placeholder: 'Abogado', class: "form-control" %>
+    <%= form.collection_select :socio, Abogado.order(:nombre),:nombre,:nombre, include_blank: true, class: "form-control" %> 
 	</div>
 </div><br>
 <div class="row">
@@ -51,7 +51,7 @@
 </div>
 
   <div class="row">
-	<hr><h3>Expediente</h3>
+	<hr> 
 	<div class="col-md-2">
     	<%= form.text_field :ubicacion_fisica, placeholder: 'Ubicación Física', class: "form-control" %>
 	</div>
@@ -67,32 +67,34 @@
 <br>
 <div class="row">
   <div class="col-md-12">
-    <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 6, class: "form-control" %>
+    <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 2, class: "form-control" %>
   </div>
 </div>
 
   
   <hr>
 
-  <h3>AUDIENCIAS</h3>
+  <h4>AUDIENCIAS</h4>
+  	<div class="row">
+      <div class="col-md-1"><strong>Acciones</strong></div> 
+		  <div class="col-md-2"><strong>Fecha Inicio</strong></div>
+      <div class="col-md-2"><strong>Fecha Fin</strong></div>
+  	  <div class="col-md-1"><strong>Asignado a</strong></div>
+  	  <div class="col-md-2"><strong>Comentarios</strong></div>
+      <div class="col-md-2"><strong>Estatus</strong></div>  
+    </div>
+  <hr>
+  
 
-	<table class="table">
-    <thead>
-         <tr>
-           <th>Fecha </th>
-           <th>Asignado</th>
-           <th>Comentarios</th>
-         </tr>
-      </thead>
       <div class="row">
       	<%= form.fields_for :audiencia_expedientes do |audiencia| %>
         	<%= render 'audiencia_expediente_fields', f: audiencia %>
     	<% end %>
     <div>
-</table>
+ 
   
 <div>    
-    <%= link_to_add_association 'Agregar Audiencia', form, :audiencia_expedientes, class:'btn btn-primary btn-lg' %>
+    <%= link_to_add_association 'Agregar Audiencia', form, :audiencia_expedientes, class:'btn btn-primary btn-md' %>
 </div>
 
   

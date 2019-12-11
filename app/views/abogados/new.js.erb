@@ -1,0 +1,6 @@
+$('#form-modal-title').html("<i class='glyphicon glyphicon-plus'></i>&nbsp;&nbsp;Ingresar Abogado Litigante");
+$('#form-modal-body').html('<%= j render("form" ) %>');
+$('#form-modal').modal('show');
+$('#form-modal-save-btn').click(function() {
+	$('#new_tipo_montaje').submit();
+});
