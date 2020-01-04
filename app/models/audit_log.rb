@@ -10,7 +10,13 @@ class AuditLog < ApplicationRecord
 
 	def self.nombre_usuario(user_id)
 		nombre = User.find(id: user_id)
-	end	 
+	end	
+	
+	def audiencias(cadena)
+		 return cadena.split(",")
+		 
+
+	end
 end
 
 

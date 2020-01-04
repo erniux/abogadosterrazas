@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :audit_logs
   resources :holidays
   resources :abogados
+  resources :links
   
   root to: "paginas#inicio" 
 

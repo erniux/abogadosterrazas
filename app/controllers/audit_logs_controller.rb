@@ -4,9 +4,9 @@ class AuditLogsController < ApplicationController
 	def index
     #@expedientes = Expediente.all.order("anio DESC")
     if params[:term]
-      @bitacora = AuditLog.search_by_full_auditlog(params[:term]) 
+      @bitacora = AuditLog.search_by_full_auditlog(params[:term]).order(created_at: 'DESC', expediente: 'DESC')
     elsif params[:term].blank?
-      @bitacora = AuditLog.all.order(created_at: 'DESC', expediente: 'DESC').page(params[:page]).per(11).padding(4)
+      @bitacora = AuditLog.all.order(created_at: 'DESC', expediente: 'DESC') 
     end 
 
   end
