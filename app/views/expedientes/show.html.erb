@@ -10,6 +10,8 @@
 		<h4>EXPEDIENTE</h4>
 		<p>Ubicación: <%= @expediente.ubicacion_fisica.upcase %>, <%= @expediente.despacho.upcase %></p>
 		<p>Responsable: <%= @expediente.socio %></p>
+		<p>Recomendado: <%= @expediente.recomendado %></p>
+		<p>Sociedad: <%= @expediente.en_sociedad %></p>
 		 
 		<% if !@expediente.referencia1.nil? %>
 			<h5>Referencias</h5>
