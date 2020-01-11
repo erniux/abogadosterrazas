@@ -38,7 +38,7 @@ class LinksController < ApplicationController
   	end
 
   	def destroy
-  	  if @link.destroyed?
+  	  if @link.destroy
   	   respond_to do |format|
   	    format.html { redirect_to links_path, notice: 'Regsitro eliminado correctamente.' }
   	   end

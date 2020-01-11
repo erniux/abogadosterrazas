@@ -63,6 +63,13 @@
 	<div class="col-md-2">
     <%= form.text_field :archivo, placeholder: 'Nombre de Archivo', class: "form-control" %>
   </div>
+   
+  <div class="col-md-2">
+    <%= form.text_field :recomendado, placeholder: '¿Quién recomienda?', class: "form-control" %>
+  </div>
+  <div class="col-md-2">
+    <%= form.text_field :en_sociedad, placeholder: 'En sociedad con...', class: "form-control" %>
+  </div>
 </div>
 <br>
 <div class="row">
@@ -70,6 +77,7 @@
     <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 2, class: "form-control" %>
   </div>
 </div>
+
 
   
   <hr>

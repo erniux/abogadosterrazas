@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_191749) do
+ActiveRecord::Schema.define(version: 2020_01_11_211155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 2020_01_04_191749) do
     t.bigint "user_id"
     t.bigint "estatus_procesal_id"
     t.bigint "entidad_responsable_id"
+    t.string "recomendado"
+    t.string "en_sociedad"
     t.index ["entidad_responsable_id"], name: "index_expedientes_on_entidad_responsable_id"
     t.index ["estatus_procesal_id"], name: "index_expedientes_on_estatus_procesal_id"
     t.index ["user_id"], name: "index_expedientes_on_user_id"
