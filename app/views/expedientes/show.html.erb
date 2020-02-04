@@ -47,7 +47,7 @@
   	</thead>
 		
 	<tbody>
-		<% @expediente.audiencia_expedientes.each do |audiencia| %>
+		<% @expediente.audiencia_expedientes.order(:fecha).each do |audiencia| %>
 			<tr>
 				<td><%= audiencia.id %></td>
 				<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha.nil? %></td>
