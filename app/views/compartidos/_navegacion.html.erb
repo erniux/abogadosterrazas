@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav">
         <li>
           <% if current_user %>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.socio %> <span></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.socio.upcase %> <span></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to "salir", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "perfil", edit_user_registration_path %></li>
@@ -44,7 +44,7 @@
           <% end %>
       </ul>
         <div class="nav navbar-right navbar-btn">
-          <%= link_to  new_expediente_path, class: "btn btn-default" do %>
+          <%= link_to  new_expediente_path, class: "btn btn-primary" do %>
             <i class="glyphicon glyphicon-plus"></i> 
             Nuevo Expediente
           <% end %>
