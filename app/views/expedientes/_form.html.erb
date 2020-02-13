@@ -46,10 +46,6 @@
   </div><br>
   
   <div class="row">
-    <div class="col-md-3">
-    <%= form.label 'Estado Procesal' %>&nbsp; 
-      <%= form.collection_select :estatus_procesal_id, EstatusProcesal.order(:estatus),:id,:estatus, include_blank: true %>          
-	  </div>
   	<div class="col-md-1">Referencias</div>
   	<div class="col-md-2">
     	<%= form.text_field :referencia1, placeholder: 'Referencia 1', class: "form-control" %>
