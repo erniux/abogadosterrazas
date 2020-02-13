@@ -23,7 +23,7 @@
                     <div class="media-body">
                       <h4 class="media-heading"><%= link_to audiencia.expediente.expediente, audiencia.expediente %></h4>
                       <address>
-                        <strong><%= audiencia.expediente.demandante %> vs <%= audiencia.expediente.demandado %></strong><br>
+                        <strong><%= audiencia.expediente.demandante.upcase %> vs <%= audiencia.expediente.demandado.upcase %></strong><br>
                         <p><%= audiencia.expediente.entidad_responsable.nombre.upcase %></p>
                         <p><%= audiencia.estatus_audiencia.estatus.upcase %></p>
                         <p>Fecha audiencia:&nbsp;<%= audiencia.fecha.strftime("%F") %>&nbsp;

@@ -11,7 +11,7 @@
   </div><hr>
 
   <div class="row">
-  	<div class="col-md-2">
+  	<div class="col-md-1">
     	<%= form.text_field :anio, placeholder: 'Año', :autofocus => true, class: "form-control" %>
 	</div>
 
@@ -19,25 +19,37 @@
     	<%= form.text_field :expediente, placeholder: 'Número de Expediente', class: "form-control" %>
 	</div>
 
-	<div class="col-md-2">
+	<div class="col-md-4">
     	<%= form.text_field :demandante, placeholder: 'Demandante', class: "form-control" %>
 	</div>
 
-	<div class="col-md-2">
+	<div class="col-md-4">
     	<%= form.text_field :demandado, placeholder: 'Demandado', class: "form-control" %>
 	</div>
-
-	<div class="col-md-2">
-    <%= form.collection_select :socio, Abogado.order(:nombre),:nombre,:nombre, include_blank: true, class: "form-control" %> 
-	</div>
-</div><br>
-<div class="row">
-  <div class="col-md-2"> Instancia:&nbsp;
-    <%= form.collection_select :entidad_responsable_id, EntidadResponsable.order(:nombre),:id,:nombre, include_blank: true %>  
   </div>
-  <div class="col-md-3">Estado Procesal:&nbsp;
-    <%= form.collection_select :estatus_procesal_id, EstatusProcesal.order(:estatus),:id,:estatus, include_blank: true %>          
-	</div>
+<br>
+  <div class="row">
+    <div class="col-md-3">
+      <%= form.label 'Cliente' %>&nbsp;
+      <%= form.select(:cliente, [['Demandante', 'demandante'], ['Demandado', 'demandado']] ) %>
+    </div>
+
+	  <div class="col-md-4">
+      <%= form.label 'Abogado' %>&nbsp;
+      <%= form.collection_select :socio, Abogado.order(:nombre),:nombre,:nombre, include_blank: false, class: "form-control" %> 
+	  </div>
+     
+    <div class="col-md-2"> 
+    <%= form.label 'Instancia' %>&nbsp;&nbsp;
+      <%= form.collection_select :entidad_responsable_id, EntidadResponsable.order(:nombre),:id,:nombre, include_blank: true %>  
+    </div>
+  </div><br>
+  
+  <div class="row">
+    <div class="col-md-3">
+    <%= form.label 'Estado Procesal' %>&nbsp; 
+      <%= form.collection_select :estatus_procesal_id, EstatusProcesal.order(:estatus),:id,:estatus, include_blank: true %>          
+	  </div>
   	<div class="col-md-1">Referencias</div>
   	<div class="col-md-2">
     	<%= form.text_field :referencia1, placeholder: 'Referencia 1', class: "form-control" %>
@@ -76,35 +88,32 @@
   <div class="col-md-12">
     <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 2, class: "form-control" %>
   </div>
-</div>
-
-
-  
-  <hr>
+</div>  
+<hr>
 
   <h4>AUDIENCIAS</h4>
-  	<div class="row">
-      <div class="col-md-1"><strong>Acciones</strong></div> 
-		  <div class="col-md-2"><strong>Fecha Inicio</strong></div>
-      <div class="col-md-2"><strong>Fecha Fin</strong></div>
-  	  <div class="col-md-1"><strong>Asignado a</strong></div>
-  	  <div class="col-md-2"><strong>Comentarios</strong></div>
-      <div class="col-md-2"><strong>Estatus</strong></div>  
-    </div>
-  <hr>
-  
 
-      <div class="row">
-      	<%= form.fields_for :audiencia_expedientes do |audiencia| %>
-        	<%= render 'audiencia_expediente_fields', f: audiencia %>
-    	<% end %>
-    <div>
- 
-  
-<div>    
+  <div class="row">
+    <%= form.fields_for :audiencia_expedientes do |audiencia| %>
+      <%= render 'audiencia_expediente_fields', f: audiencia %>
+    <% end %>
+   
+  <div>    
     <%= link_to_add_association 'Agregar Audiencia', form, :audiencia_expedientes, class:'btn btn-primary btn-md' %>
-</div>
+  </div>
+  </div>
 
+<hr>
+<h4>RESUMEN</h4>  
+  <div class="row"> 
+    <%= form.fields_for :resumen_expedientes do |resumen| %>
+      <%= render 'resumen_expediente_fields', f: resumen %>
+    <% end %>
   
+ 
+  <div>    
+    <%= link_to_add_association 'Agregar Resumen', form, :resumen_expedientes, class:'btn btn-primary btn-md' %>
+  </div>
+  </div>
 
 <% end %>

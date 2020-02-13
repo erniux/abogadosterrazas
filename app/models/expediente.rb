@@ -5,14 +5,20 @@ class Expediente < ApplicationRecord
 	before_save :to_upper
 	belongs_to :user
 	belongs_to :entidad_responsable
-	has_many :audiencia_expedientes, inverse_of: :expediente, dependent: :destroy 
 	belongs_to :estatus_procesal
 	
+
+	has_many :audiencia_expedientes, inverse_of: :expediente, dependent: :destroy 
+	has_many :resumen_expedientes, inverse_of: :expediente 
+
+	enum cliente: {demandante: 0, demandado: 1}
 	
 	validates_uniqueness_of :expediente
 	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho, :estatus_procesal_id
 	
 	accepts_nested_attributes_for :audiencia_expedientes, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :resumen_expedientes, reject_if: :all_blank, allow_destroy: true
+	 
 
 	pg_search_scope :search_by_full_expediente, against: [:expediente, :demandante, :demandado, :entidad_responsable, 
 														  :socio, :estado_procesal, :ubicacion_fisica, :despacho, 
@@ -46,6 +52,4 @@ class Expediente < ApplicationRecord
  
 	  end
 	    
-	  
-
 end

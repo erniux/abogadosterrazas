@@ -15,7 +15,7 @@
       <%= f.collection_select :asignado, Abogado.order(:iniciales),:nombre,:iniciales, include_blank: true %> 
   	</div>
   	<div class="col-md-2">
-  		<%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2, class: "form-control"  %>
+  		<%= f.text_area :comentarios, placeholder: 'Motivo de la audiencia', cols: 50, rows: 2, class: "form-control"  %>
   	</div>
     <div class="col-md-2">
       <%= f.collection_select :estatus_audiencia_id, EstatusAudiencia.order(:estatus),:id,:estatus, include_blank: true %> 

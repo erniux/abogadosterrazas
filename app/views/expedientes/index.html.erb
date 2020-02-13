@@ -56,12 +56,13 @@
           <td class="content-box-black"><h4><%= link_to expediente.expediente, expediente  %></h4></td>
         <% end %>
 
-        <td><%= expediente.demandante %></td>
-        <td><%= expediente.demandado %></td>
+        <td><%= expediente.demandante.upcase %></td>
+        <td><%= expediente.demandado.upcase %></td>
         <% instancia = EntidadResponsable.where(id: expediente.entidad_responsable_id) %>
         <%= color_entidad instancia.first.nombre %>
-        <td><% estatus = EstatusProcesal.where(id: expediente.estatus_procesal_id) %>
-            <%= estatus.first.estatus.upcase %></td>
+        <td><%= expediente.resumen_expedientes.last.estatus_procesal.estatus.upcase %></td>
+         
+         
             <% if logged_in?( :admin) %>
             <td><%= link_to expediente, method: :delete, data:{ confirm: '¿Confirma eliminar el registro?'}, class: "btn btn-danger"  do %>
             <i class="glyphicon glyphicon-trash"></i>

@@ -3,7 +3,7 @@
 		<h3>Número Expediente: <%= @expediente.expediente %>&nbsp;&nbsp;Año: <%= @expediente.anio %></h3>
 		<h4><%= @expediente.demandante  %> <strong>vs</strong> <%= @expediente.demandado %></h4>
 		<h5>INSTANCIA:&nbsp;<%= @expediente.entidad_responsable.nombre.upcase %> </h5>
-		<h5>ESTADO PROCESAL:&nbsp;<%= @expediente.estatus_procesal.estatus.upcase %></h5>
+		<h5>ESTADO PROCESAL:&nbsp;<%= @expediente.resumen_expedientes.last.estatus_procesal.estatus.upcase %></h5>
 
 	</div>
 	<div class="col-md-6">
@@ -34,14 +34,13 @@
 <table class="table">
 	<thead>
    		<tr>
-   			<th>ID</th>
      		<th>Fecha inicio</th>
-			 <th>Fecha término</th>
+			<th>Fecha término</th>
      		<th>Expediente</th>
      		<th>Instancia</th>
      		<th>Asignado</th>
-     		<th>Estatus</th>
-     		<th>Comentarios</th>
+     		<th>Motivo de audiencia</th>
+			<th>Estatus</th>
      		
    		</tr>
   	</thead>
@@ -49,22 +48,50 @@
 	<tbody>
 		<% @expediente.audiencia_expedientes.order(:fecha).each do |audiencia| %>
 			<tr>
-				<td><%= audiencia.id %></td>
 				<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha.nil? %></td>
 				<td><%= audiencia.fecha_fin.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha_fin.nil? %></td>
 				<td><%= audiencia.expediente.expediente %></td> 
 				<td><%= audiencia.expediente.entidad_responsable.nombre %></td>
 				<td><%= audiencia.asignado.upcase if !audiencia.asignado.nil? %></td>
-				<td><%= audiencia.estatus_audiencia.estatus.upcase %>
 				<% if audiencia.comentarios.nil? %>
 					<td><%= audiencia.comentarios %></td>
 				<% else %>
 					<td><%= audiencia.comentarios.upcase %></td>
 				<% end %>
+				<td><%= audiencia.estatus_audiencia.estatus.upcase %>
+				
 			</tr>
 		<% end %>
 	</tbody>
 </table>
+
+<h3> Resumen </h3>
+
+<table class="table">
+	<thead>
+   		<tr>
+     		<th>Fecha notificación</th>
+     		<th>Motivo notificación</th>
+			 <th>Estado procesal</th>
+   		</tr>
+  	</thead>
+		
+	<tbody>
+		<% @expediente.resumen_expedientes.order(:fecha_notificacion).each do |resumen| %>
+			<tr>
+				<td><%= resumen.fecha_notificacion.strftime("%d/%m/%Y") if !resumen.fecha_notificacion.nil? %></td>
+				<% if resumen.comentarios.nil? %>
+					<td><%= resumen.comentarios %></td>
+				<% else %>
+					<td><%= resumen.comentarios.upcase %></td>
+				<% end %>
+				<td><%= resumen.estatus_procesal.estatus %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
 	
 <%= link_to "Modificar", edit_expediente_path(@expediente), class: "btn btn-success btn-lg" %>
 <%= link_to 'Expedientes', expedientes_path, class: "btn btn-info btn-lg" %>

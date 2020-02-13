@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_211155) do
+ActiveRecord::Schema.define(version: 2020_02_13_052541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2020_01_11_211155) do
     t.string "iniciales"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "audiencia", force: :cascade do |t|
+    t.date "fecha"
+    t.date "asignado"
+    t.text "comentarios"
+    t.bigint "expediente_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expediente_id"], name: "index_audiencia_on_expediente_id"
   end
 
   create_table "audiencia_expedientes", force: :cascade do |t|
@@ -107,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_01_11_211155) do
     t.bigint "entidad_responsable_id"
     t.string "recomendado"
     t.string "en_sociedad"
+    t.integer "cliente", default: 0
     t.index ["entidad_responsable_id"], name: "index_expedientes_on_entidad_responsable_id"
     t.index ["estatus_procesal_id"], name: "index_expedientes_on_estatus_procesal_id"
     t.index ["user_id"], name: "index_expedientes_on_user_id"
@@ -129,6 +140,17 @@ ActiveRecord::Schema.define(version: 2020_01_11_211155) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "resumen_expedientes", force: :cascade do |t|
+    t.string "comentarios"
+    t.date "fecha_notificacion"
+    t.bigint "expediente_id"
+    t.bigint "estatus_procesal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["estatus_procesal_id"], name: "index_resumen_expedientes_on_estatus_procesal_id"
+    t.index ["expediente_id"], name: "index_resumen_expedientes_on_expediente_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -148,10 +170,13 @@ ActiveRecord::Schema.define(version: 2020_01_11_211155) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "audiencia", "expedientes"
   add_foreign_key "audiencia_expedientes", "estatus_audiencias"
   add_foreign_key "audiencia_expedientes", "expedientes"
   add_foreign_key "audit_logs", "users"
   add_foreign_key "expedientes", "entidad_responsables"
   add_foreign_key "expedientes", "estatus_procesals"
   add_foreign_key "expedientes", "users"
+  add_foreign_key "resumen_expedientes", "estatus_procesals"
+  add_foreign_key "resumen_expedientes", "expedientes"
 end
