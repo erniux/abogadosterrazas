@@ -37,7 +37,7 @@
 
 	  <div class="col-md-4">
       <%= form.label 'Abogado' %>&nbsp;
-      <%= form.collection_select :socio, Abogado.order(:nombre),:nombre,:nombre, include_blank: false, class: "form-control" %> 
+      <%= form.collection_select :socio, Abogado.order(:nombre),:nombre,:nombre, include_blank: true, class: "form-control" %> 
 	  </div>
      
     <div class="col-md-2"> 
