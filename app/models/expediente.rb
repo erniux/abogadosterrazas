@@ -10,6 +10,7 @@ class Expediente < ApplicationRecord
 
 	has_many :audiencia_expedientes, inverse_of: :expediente, dependent: :destroy 
 	has_many :resumen_expedientes, inverse_of: :expediente 
+	has_many :resumen_links, inverse_of: :expediente 
 
 	enum cliente: {demandante: 0, demandado: 1}
 	
@@ -18,6 +19,7 @@ class Expediente < ApplicationRecord
 	
 	accepts_nested_attributes_for :audiencia_expedientes, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :resumen_expedientes, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :resumen_links, reject_if: :all_blank, allow_destroy: true
 	 
 
 	pg_search_scope :search_by_full_expediente, against: [:expediente, :demandante, :demandado, :entidad_responsable, 

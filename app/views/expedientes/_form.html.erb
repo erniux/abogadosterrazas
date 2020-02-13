@@ -113,4 +113,16 @@
   </div>
   </div>
 
+  <h4>RESUMEN INSTANCIA</h4>  
+  <div class="row"> 
+    <%= form.fields_for :resumen_links do |resumen_instancia| %>
+      <%= render 'resumen_link_fields', f: resumen_instancia %>
+    <% end %>
+  
+ 
+  <div>    
+    <%= link_to_add_association 'Agregar Resumen instancia', form, :resumen_links, class:'btn btn-primary btn-md' %>
+  </div>
+  </div>
+
 <% end %>

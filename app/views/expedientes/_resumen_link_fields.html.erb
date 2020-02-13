@@ -1,0 +1,19 @@
+<div class="nested-fields">
+    <p>
+        <div class="row">
+            <% if logged_in?( :admin) %>
+                <div class="col-md-1"><%= link_to_remove_association '', f, class: "btn btn-danger glyphicon glyphicon-trash" %></div>
+            <% end %>
+            <div class="col-md-2">
+                <%= f.date_field :fecha_publicacion, placeholder: 'Fecha publicación', date_format: 'YYYY-MM-DD', class: "form-control" %>
+            </div>
+            <div class="col-md-3">
+                <%= f.collection_select :accion_instancium_id, AccionInstancium.order(:accion),:id,:accion, include_blank: true %> 
+            </div>	 
+            <div class="col-md-3">
+  	            <%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2, class: "form-control"  %>
+            </div>
+        </div>
+    </p>
+</div>   
+ 

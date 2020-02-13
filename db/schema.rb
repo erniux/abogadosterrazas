@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_052541) do
+ActiveRecord::Schema.define(version: 2020_02_13_153945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2020_02_13_052541) do
   create_table "abogados", force: :cascade do |t|
     t.string "nombre"
     t.string "iniciales"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "accion_instancia", force: :cascade do |t|
+    t.string "accion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -151,6 +157,18 @@ ActiveRecord::Schema.define(version: 2020_02_13_052541) do
     t.index ["expediente_id"], name: "index_resumen_expedientes_on_expediente_id"
   end
 
+  create_table "resumen_links", force: :cascade do |t|
+    t.date "fecha_publicacion"
+    t.string "comentarios"
+    t.string "accion"
+    t.bigint "expediente_id"
+    t.bigint "accion_instancium_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["accion_instancium_id"], name: "index_resumen_links_on_accion_instancium_id"
+    t.index ["expediente_id"], name: "index_resumen_links_on_expediente_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -179,4 +197,6 @@ ActiveRecord::Schema.define(version: 2020_02_13_052541) do
   add_foreign_key "expedientes", "users"
   add_foreign_key "resumen_expedientes", "estatus_procesals"
   add_foreign_key "resumen_expedientes", "expedientes"
+  add_foreign_key "resumen_links", "accion_instancia"
+  add_foreign_key "resumen_links", "expedientes"
 end
