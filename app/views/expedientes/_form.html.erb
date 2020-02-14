@@ -40,10 +40,14 @@
       <%= form.collection_select :socio, Abogado.order(:nombre),:nombre,:nombre, include_blank: true, class: "form-control" %> 
 	  </div>
      
-    <div class="col-md-2"> 
-    <%= form.label 'Instancia' %>&nbsp;&nbsp;
+    <div class="col-md-2"> Instancia:&nbsp;
       <%= form.collection_select :entidad_responsable_id, EntidadResponsable.order(:nombre),:id,:nombre, include_blank: true %>  
     </div>
+    
+       
+      <%= form.hidden_field :estatus_procesal_id, :value => 1 %>
+	   
+    
   </div><br>
   
   <div class="row">
@@ -101,7 +105,7 @@
   </div>
 
 <hr>
-<h4>RESUMEN</h4>  
+<h4>HISTORIA ESTADO PROCESAL</h4>  
   <div class="row"> 
     <%= form.fields_for :resumen_expedientes do |resumen| %>
       <%= render 'resumen_expediente_fields', f: resumen %>

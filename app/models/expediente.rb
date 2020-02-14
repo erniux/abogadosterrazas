@@ -1,7 +1,6 @@
 class Expediente < ApplicationRecord
 	include PgSearch::Model
 
-
 	before_save :to_upper
 	belongs_to :user
 	belongs_to :entidad_responsable
@@ -15,13 +14,14 @@ class Expediente < ApplicationRecord
 	enum cliente: {demandante: 0, demandado: 1}
 	
 	validates_uniqueness_of :expediente
-	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho 
+	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho, :entidad_responsable_id 
 	
 	accepts_nested_attributes_for :audiencia_expedientes, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :resumen_expedientes, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :resumen_links, reject_if: :all_blank, allow_destroy: true
 	 
-
+	validates :resumen_expedientes, :presence => true
+	
 	pg_search_scope :search_by_full_expediente, against: [:expediente, :demandante, :demandado, :entidad_responsable, 
 														  :socio, :estado_procesal, :ubicacion_fisica, :despacho, 
 														  :referencia1, :referencia2, :referencia3, :anio], 
