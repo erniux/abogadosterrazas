@@ -34,6 +34,12 @@
 							   meeting.fecha.strftime("%H:%M").to_s + fecha_fin), 
 							   expediente_path(meeting.expediente.id) %>	
 			    </div>
+			<% else %>
+			<div>
+				  <%= link_to (meeting.expediente.expediente.to_s + ' ' + 
+							   meeting.fecha.strftime("%H:%M").to_s + fecha_fin), 
+							   expediente_path(meeting.expediente.id) %>	
+			    </div>	
       	<% end %>
       <% end %>
     </div>
