@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   devise_for :users, path: '', path_names: { sign_in: 'ingresar', sign_out: 'Salir', sign_up: 'registrar'}
 
-  resources :expedientes
+  resources :expedientes do
+    delete :delete_upload_documentos
+  end
+
+  
   resources :estatus_procesals
   resources :estatus_audiencias
   resources :entidad_responsables

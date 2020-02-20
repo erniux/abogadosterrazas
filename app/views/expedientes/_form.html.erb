@@ -88,10 +88,38 @@
   <div class="col-md-6">
     <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 2, class: "form-control" %>
   </div>
-  <div class="col-md-6">
-        <%= form.label :documentos %>
-        <%= form.file_field :documentos, multiple: true %>
-</div>  
+
+
+  <!--  Aqui empieza la gestion de documentos Para expedientes -->
+   <div class="col-md-3">
+   <h3>Documentos Anexos</h3>
+      <% if @expediente.documentos.attached? %>
+        <% @expediente.documentos.each do |upload| %>
+            <div class="col-md-9">
+              <% nombre_archivo = upload.filename.to_s  %>
+              <%= link_to nombre_archivo.truncate(25), upload, target: '_blank' %> <br/>
+            </div>
+            <div class="col-md-1">
+                <p><%= link_to expediente_delete_upload_documentos_path(:expediente_id => @expediente.id, 
+                                  :documentos_id => upload.id), method: :delete, 
+                                  data: { confirm: '¿Confirma Eliminar Archivo?' } do  %>
+                      <i class="btn btn-danger btn-sm glyphicon glyphicon-trash"></i>
+                <% end %>    </p>            
+            </div>
+           
+        <% end %> 
+      <% else %>
+        <div class="col-md-9">
+          <small>Sin documentos anexos</small>
+        </div>
+      <% end %>
+      <div class="col-md-9">
+        <br>
+          <%= form.file_field :documentos, multiple: true %>
+      </div>
+  </div>
+  <!-- Aqui termina la gestion de documentos para expedientes -->
+   
 </div>
 <hr>
 

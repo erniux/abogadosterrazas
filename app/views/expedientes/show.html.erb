@@ -1,7 +1,7 @@
  <div class="row">
 	<div class="col-md-6">
 		<h3>Número Expediente: <%= @expediente.expediente %>&nbsp;&nbsp;Año: <%= @expediente.anio %></h3>
-		<h4><%= @expediente.demandante  %> <strong>vs</strong> <%= @expediente.demandado %></h4>
+		<h4><%= @expediente.demandante.upcase  %> <strong>vs</strong> <%= @expediente.demandado.upcase %></h4>
 		<h5>INSTANCIA:&nbsp;<%= @expediente.entidad_responsable.nombre.upcase %> </h5>
 		<h5>ESTADO PROCESAL:&nbsp;<%= @expediente.resumen_expedientes.last.estatus_procesal.estatus.upcase %></h5>
 
@@ -27,15 +27,13 @@
 		
 	 
  <h4>Documentos Anexos</h4>
-<% if @expediente.documentos.attached? %>
+	<% if @expediente.documentos.attached? %>
         <% @expediente.documentos.each do |documento| %>
-           
-            
               <% nombre_archivo = documento.filename.to_s  %>
               <%= link_to nombre_archivo.truncate(25), documento, target: '_blank' %> <br/>
              
 			<% end %>
-			<% end %>
+	<% end %>
 </div>
 <hr>
 <h3> Audiencias </h3>
@@ -86,11 +84,12 @@
      		<th>Fecha notificación</th>
      		<th>Motivo notificación</th>
 			 <th>Estado procesal</th>
+			 <th>Anexos</th>
    		</tr>
   	</thead>
 		
 	<tbody>
-		<% @expediente.resumen_expedientes.order(:fecha_notificacion).each do |resumen| %>
+		<% @expediente.resumen_expedientes.order(:created_at).each do |resumen| %>
 			<tr>
 				<td><%= resumen.fecha_notificacion.strftime("%d/%m/%Y") if !resumen.fecha_notificacion.nil? %></td>
 				<% if resumen.comentarios.nil? %>

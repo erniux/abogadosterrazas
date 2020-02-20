@@ -8,7 +8,6 @@ class Expediente < ApplicationRecord
 
 	has_many_attached :documentos
 	
-
 	has_many :audiencia_expedientes, inverse_of: :expediente, dependent: :destroy 
 	has_many :resumen_expedientes, inverse_of: :expediente 
 	has_many :resumen_links, inverse_of: :expediente 
@@ -25,7 +24,7 @@ class Expediente < ApplicationRecord
 	validates :resumen_expedientes, :presence => true
 	
 	pg_search_scope :search_by_full_expediente, against: [:expediente, :demandante, :demandado, :entidad_responsable, 
-														  :socio, :estado_procesal, :ubicacion_fisica, :despacho, 
+														  :socio, :ubicacion_fisica, :despacho, 
 														  :referencia1, :referencia2, :referencia3, :anio], 
 												using:   {tsearch: { prefix: true }}
 
@@ -38,7 +37,7 @@ class Expediente < ApplicationRecord
 		nombre_socio = Abogado.where(id: socio).first.nombre
 	  end
 	  
-  	private
+  	 
 
   	def to_upper
   	  attributes.keys.each do |attribute|

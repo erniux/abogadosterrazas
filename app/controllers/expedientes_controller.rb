@@ -78,6 +78,12 @@ class ExpedientesController < ApplicationController
     end
   end
 
+  def delete_upload_documentos
+    @expediente=Expediente.find(params[:expediente_id])
+    @expediente.documentos.find_by_id(params[:documentos_id]).purge
+    redirect_back(fallback_location: request.referer)
+  end
+
   private
     def set_expediente
       @expediente = Expediente.find(params[:id])
