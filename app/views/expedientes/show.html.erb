@@ -99,6 +99,9 @@
 					<td><%= resumen.comentarios.upcase %></td>
 				<% end %>
 				<td><%= resumen.estatus_procesal.estatus %></td>
+				<% if resumen.escrito.attached? %>
+					<td><%= link_to resumen.escrito.filename, resumen.escrito, target: '_blank' %> </td>
+				<% end %>
 			</tr>
 		<% end %>
 	</tbody>
