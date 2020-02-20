@@ -5,6 +5,7 @@ class AudienciaExpediente < ApplicationRecord
 
   belongs_to :expediente
   belongs_to :estatus_audiencia
+  has_one_attached :citatorio
   
   before_save :to_upper
 

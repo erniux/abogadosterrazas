@@ -19,8 +19,17 @@
   	</div>
     <div class="col-md-2">
       <%= f.collection_select :estatus_audiencia_id, EstatusAudiencia.order(:estatus),:id,:estatus, include_blank: true %> 
-    </div>  
-  </div>
+    </div> 
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.file_field :citatorio %>
+      </div>
+    </div> 
+     
+    
+  
   </p>
 </div>     
 

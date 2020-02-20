@@ -25,9 +25,18 @@
 		<% end %>
 		<p>COMENTARIOS: <%= @expediente.comentarios.to_s.upcase %></p>
 		
-	</div>
-</div>	 
-
+	 
+ <h4>Documentos Anexos</h4>
+<% if @expediente.documentos.attached? %>
+        <% @expediente.documentos.each do |documento| %>
+           
+            
+              <% nombre_archivo = documento.filename.to_s  %>
+              <%= link_to nombre_archivo.truncate(25), documento, target: '_blank' %> <br/>
+             
+			<% end %>
+			<% end %>
+</div>
 <hr>
 <h3> Audiencias </h3>
 
@@ -41,6 +50,7 @@
      		<th>Asignado</th>
      		<th>Motivo de audiencia</th>
 			<th>Estatus</th>
+			<th>Anexos</th>
      		
    		</tr>
   	</thead>
@@ -58,7 +68,10 @@
 				<% else %>
 					<td><%= audiencia.comentarios.upcase %></td>
 				<% end %>
-				<td><%= audiencia.estatus_audiencia.estatus.upcase %>
+				<td><%= audiencia.estatus_audiencia.estatus.upcase %></td>
+				<% if audiencia.citatorio.attached? %>
+					<td><%= link_to audiencia.citatorio.filename, audiencia.citatorio, target: '_blank' %> </td>
+				<% end %>
 				
 			</tr>
 		<% end %>

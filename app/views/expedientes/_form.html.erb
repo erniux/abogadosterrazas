@@ -47,7 +47,6 @@
        
       <%= form.hidden_field :estatus_procesal_id, :value => 1 %>
 	   
-    
   </div><br>
   
   <div class="row">
@@ -86,10 +85,14 @@
 </div>
 <br>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <%= form.text_area :comentarios, placeholder: 'Comentarios', cols:150, rows: 2, class: "form-control" %>
   </div>
+  <div class="col-md-6">
+        <%= form.label :documentos %>
+        <%= form.file_field :documentos, multiple: true %>
 </div>  
+</div>
 <hr>
 
   <h4>AUDIENCIAS</h4>
