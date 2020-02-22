@@ -13,7 +13,7 @@ class ExpedientesController < ApplicationController
   end
 
   def show
-     
+    
   end
 
   def new
