@@ -14,8 +14,11 @@ class AuditLog < ApplicationRecord
 	
 	def audiencias(cadena)
 		 return cadena.split(",")
-		 
+	end
 
+	def expediente_id(expediente)
+		expediente_id = Expediente.where(expediente: expediente)
+		
 	end
 end
 

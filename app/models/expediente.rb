@@ -11,6 +11,7 @@ class Expediente < ApplicationRecord
 	has_many :audiencia_expedientes, inverse_of: :expediente, dependent: :destroy 
 	has_many :resumen_expedientes, inverse_of: :expediente, dependent: :destroy  
 	has_many :resumen_links, inverse_of: :expediente, dependent: :destroy  
+	
 
 	enum cliente: {demandante: 0, demandado: 1}
 	

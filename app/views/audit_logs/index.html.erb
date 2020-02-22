@@ -14,34 +14,27 @@
 	<thead>
 		<tr>
 			<th>Expediente</th>	
+      <th>Demandante</th>
+      <th>Demandado</th>
 			<th>Acción</th>	
 			<th>Fecha acción</th>
-            <th>Usuario</th>
-            <th>Estado Procesal</th>
-            <th>Audiencias</th>
+      <th>Usuario</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @bitacora.each do |bitacora| %>
 			<tr>
-				<td><%= bitacora.expediente %></td>
-				<td><%= bitacora.accion %></td>
-                <td><%= bitacora.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
-                <td><%= bitacora.user.socio %></td>
-                <td><%= bitacora.estado_procesal %></td>
-                <td>
-                <% i = 1 %>
-                    <% valor = bitacora.audiencias(bitacora.comentarios_audicencia)  %>
-                    
-                    <% while i < valor.length %>
-                      <li><%= valor[i] %></li>
-                      <% i += 1 %>
-                    <% end %>
-                       
-                      
-
-                         
-                </td>
+      <% expediente = Expediente.where(expediente: bitacora.expediente).first %>
+      <% if !expediente.nil? %>
+				<td><%= link_to bitacora.expediente, expediente %></td>
+      <% else %>
+      	<td><%= bitacora.expediente %></td>
+        <% end %>
+				<td><%= bitacora.demandante %></td>
+        <td><%= bitacora.demandado %></td>
+        <td><%= bitacora.accion %></td>
+        <td><%= bitacora.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
+        <td><%= bitacora.user.socio %>
 			</tr>
 		<% end %>
 
