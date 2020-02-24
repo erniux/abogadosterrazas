@@ -13,7 +13,9 @@ class ExpedientesController < ApplicationController
   end
 
   def show
-    
+    AuditLog.create!(expediente: @expediente.expediente, demandante: @expediente.demandante, demandado: @expediente.demandado, 
+      entidad_responsable: @expediente.entidad_responsable_id, socio: @expediente.socio, anio: @expediente.anio,  
+      email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Consulta de Expediente' )
   end
 
   def new
