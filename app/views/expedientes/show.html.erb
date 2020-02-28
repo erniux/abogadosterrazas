@@ -3,7 +3,7 @@
 		<h3>Número Expediente: <%= @expediente.expediente %>&nbsp;&nbsp;Año: <%= @expediente.anio %></h3>
 		<h4><%= @expediente.demandante.upcase  %> <strong>vs</strong> <%= @expediente.demandado.upcase %></h4>
 		<h5>INSTANCIA:&nbsp;<%= @expediente.entidad_responsable.nombre.upcase %> </h5>
-		<h5>ESTADO PROCESAL:&nbsp;<%= @expediente.resumen_expedientes.last.estatus_procesal.estatus.upcase %></h5>
+		<h5>ESTADO PROCESAL:&nbsp;<%= @expediente.resumen_expedientes.order('fecha_notificacion ASC').last.estatus_procesal.estatus.upcase %></h5>
 
 	</div>
 	<div class="col-md-6">
