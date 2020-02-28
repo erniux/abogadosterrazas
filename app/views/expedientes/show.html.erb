@@ -89,7 +89,7 @@
   	</thead>
 		
 	<tbody>
-		<% @expediente.resumen_expedientes.order(:created_at).each do |resumen| %>
+		<% @expediente.resumen_expedientes.order(:fecha_notificacion).each do |resumen| %>
 			<tr>
 				<td><%= resumen.fecha_notificacion.strftime("%d/%m/%Y") if !resumen.fecha_notificacion.nil? %></td>
 				<% if resumen.comentarios.nil? %>
