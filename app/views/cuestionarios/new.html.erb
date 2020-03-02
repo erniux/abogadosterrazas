@@ -1,0 +1,5 @@
+<%= form_with(model: @cuestionario, local: true) do |form| %>
+  <%= form.text_field :nombre %>
+  <%= form.submit "Guardar", class: 'btn btn-success' %>
+<% end %>
+<%= link_to "Regresar a Catálogo", cuestionarios_path, class: "btn btn-primary" %>

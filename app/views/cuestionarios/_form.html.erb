@@ -1,0 +1,220 @@
+<%= form_for(@cuestionario, html: { multipart: true }, remote: local_assigns[:hide_buttons]) do |form| %>
+<% if @cuestionario.errors.any? %>
+      <% @cuestionario.errors.full_messages.each do |message| %>
+         <%= js add_gritter(message, title: "Aviso", sticky: false) %>
+      <% end %>
+  <% end %>
+
+<div id="printThis" class="modal-body">
+<h3>Datos Personales</h3>
+  <%= form.text_field :nombre, class: "form-control", placeholder: "Nombre" %>
+  <%= form.text_field :appaterno, class: "form-control", placeholder: "Apellido Paterno" %>
+  <%= form.text_field :apmaterno, class: "form-control", placeholder: "Apellido Materno" %>
+  <%= form.text_field :calle, class: "form-control", placeholder: "Calle" %>
+  <%= form.text_field :numero, class: "form-control", placeholder: "Número" %>
+  <%= form.text_field :colonia, class: "form-control", placeholder: "Colonia" %>
+  <%= form.text_field :municipio, class: "form-control", placeholder: "Municipio" %>
+  <%= form.text_field :pais, class: "form-control", placeholder: "Pais" %>
+  <%= form.text_field :codigo_postal, class: "form-control", placeholder: "Código Postal" %>
+  <%= form.text_field :correo_electronico, class: "form-control", placeholder: "Correo Electrónico" %>
+
+<h3>Datos Empleo</h3>
+<h4>Datos contratante</h4>
+<%= form.text_field :nombre_contratante, class: "form-control", placeholder: "Nombre" %>
+<%= form.text_field :puesto_contratante, class: "form-control", placeholder: "Puesto" %>
+<h4>Jefe Directo</h4>
+<%= form.text_field :nombre_jefe_directo, class: "form-control", placeholder: "Nombre" %>
+<%= form.text_field :puesto_jefe_directo, class: "form-control", placeholder: "Puesto" %>
+<h4>Sobre el empleo</h4>
+<%= form.text_field :fecha_ingreso_laboral, class: "form-control", placeholder: "Fecha de Ingreso" %>
+<%= form.text_field :puesto, class: "form-control", placeholder: "Puesto desempeñado" %>
+<%= form.text_area :funciones, class: "form-control", placeholder: "Funciones", rows:5 %>
+<%= form.text_field :actividad_laboral, class: "form-control", placeholder: "Actividad Laboral" %>
+<%= form.text_field :horario_trabajo, class: "form-control", placeholder: "Horario Laboral" %>
+<%= form.text_field :dias_trabajo, class: "form-control", placeholder: "Días Laborales" %>
+<%= form.text_field :salario_contratacion, class: "form-control", placeholder: "Salario Contratación" %>
+<!-- <%= form.text_field :frecuencia_pago, class: "form-control", placeholder: "Frecuencia de pago" %> -->
+<%= form.text_area :esquema_contratacion, class: "form-control", placeholder: "Esquema de Contratación", rows: 5 %>
+<%= form.text_area :prestaciones, class: "form-control", placeholder: "Prestaciones", rows: 5 %>
+<%= form.text_field :forma_pago_salario, class: "form-control", placeholder: "Forma de Pago Salarial" %>
+
+<h4>Sobre la fuente empleadora</h4>
+<%= form.text_area :empresa, class: "form-control", placeholder: "Empresa(s) y/o Patrón", row: 4 %>
+<%= form.text_field :lugar_contratacion, class: "form-control", placeholder: "Lugar Contratación" %>
+<%= form.text_field :calle_contratacion, class: "form-control", placeholder: "Calle" %>
+<%= form.text_field :numero_contratacion, class: "form-control", placeholder: "Número" %>
+<%= form.text_field :colonia_contratacion, class: "form-control", placeholder: "Colonia" %>
+<%= form.text_field :municipio_contratacion, class: "form-control", placeholder: "Municipio" %>
+<%= form.text_field :estado_contrtacion, class: "form-control", placeholder: "Estado" %>
+<%= form.text_field :pais_contratacion, class: "form-control", placeholder: "País" %>
+<%= form.text_field :codigo_postal_contratacion, class: "form-control", placeholder: "Código Postal" %>
+
+<h3>Sobre la separación laboral</h3>
+<%= form.text_field :fecha_separacion_laboral, class: "form-control", placeholder: "Fecha de separación laboral" %>
+<%= form.text_field :hora_separacion_laboral, class: "form-control", placeholder: "Hora separación laboral" %>
+<%= form.text_field :nombre_responsable_despido, class: "form-control", placeholder: "Quien le comunicó el despido" %>
+<%= form.text_field :puesto_responsable_despido, class: "form-control", placeholder: "Puesto del responsable del despido" %>
+<%= form.text_field :lugar_despido, class: "form-control", placeholder: "Lugar exacto del despido" %>
+<%= form.text_area :manifiesto_despido, class: "form-control", placeholder: "¿Que le manifestaron a Usted el día del despido?", rows: 4 %>
+<%= form.text_area :condicion_salud, class: "form-control", placeholder: "¿Menifieste su estado de salud actual?", rows: 4 %>
+
+
+<h3>Sobre las prestaciones</h3>
+<div class="row">
+  <div class="col-md-5">
+    <%= form.label :imss_prestacion, "¿Cuenta con IMSS? ", :style => "float:left;" %>
+  </div>
+  <div class="col-md-1">
+    <%= form.check_box :imss_prestacion, :style => "float:left;" %>
+  </div>
+  <div class="col-md-6">
+    <%= form.text_field :numero_imss, class: "form-control", placeholder: "Número de Seguro Social" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.label :infonavit_prestacion, "¿Cuenta con INFONAVIT? ", :style => "float:left;" %>
+  </div>
+  <div class="col-md-1">
+    <%= form.check_box :infonavit_prestacion, :style => "float:left;" %>
+  </div>
+  <div class="col-md-6">
+    <%= form.text_field :credito_infonavit, class: "form-control", placeholder: "Crédito INFONAVIT" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.label :afore_prestacion, "¿Cuenta con AFORE? ", :style => "float:left;" %>
+  </div>
+  <div class="col-md-1">
+    <%= form.check_box :afore_prestacion, :style => "float:left;" %>
+  </div>
+  <div class="col-md-6">
+    <%= form.text_field :afore_nombre, class: "form-control", placeholder: "Nombre de la AFORE" %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-5">
+    <%= form.label :accidentes_de_trabajo, "¿Ha tenido accidentes de trabajo? ", :style => "float:left;" %>
+  </div>
+  <div class="col-md-1">
+    <%= form.check_box :accidentes_de_trabajo, :style => "float:left;" %>
+  </div>
+  <div class="col-md-6">
+    <%= form.text_area :accidentes_detalle, class: "form-control", placeholder: "Describa el(los) Accidente(s) de Trabajo ", rows: 3 %>
+  </div>
+</div>
+
+ 
+
+<h3>Adeudos</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Manifieste si le adeudan:</th>
+      <th>Dias</th>
+      <th>Monto</th>
+      <th>Año(s)</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vacaciones</td>
+      <td><%= form.text_field :adeudo_vacaciones_dias, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_vacaciones_monto, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_vacaciones_anios, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td>Prima Vacacional</td>
+      <td><%= form.text_field :adeudo_prima_vacacional_dias, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_prima_vacacional_monto, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_prima_vacacional_anios, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td>Aguinaldo</td>
+      <td><%= form.text_field :adeudo_aguinaldo_dias, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_aguinaldo_monto, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_aguinaldo_anios, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td>Tiempo Extra</td>
+      <td><%= form.text_field :adeudo_tiempo_extra_dias, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_tiempo_extra_monto, class: "form-control" %></td>
+      <td><%= form.text_field :adeudo_tiempo_extra_anios, class: "form-control" %></td>
+    </tr>
+    <tr>
+       <td><%= form.text_field :otras_prestaciones_nombre_1, class: "form-control" %></td>
+       <td></td>
+       <td><%= form.text_field :otras_prestaciones_adeudo_1, class: "form-control" %></td>
+        
+    </tr>
+    <tr>
+       <td><%= form.text_field :otras_prestaciones_nombre_2, class: "form-control" %></td>
+       <td></td>
+       <td><%= form.text_field :otras_prestaciones_adeudo_2, class: "form-control" %></td>
+        
+    </tr>
+    <tr>
+       <td><%= form.text_field :otras_prestaciones_nombre_3, class: "form-control" %></td>
+       <td></td>
+       <td><%= form.text_field :otras_prestaciones_adeudo_3, class: "form-control" %></td>
+        
+    </tr>
+    <tr>
+       <td><%= form.text_field :otras_prestaciones_nombre_4, class: "form-control" %></td>
+       <td></td>
+       <td><%= form.text_field :otras_prestaciones_adeudo_4, class: "form-control" %></td>
+        
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="row firma">
+    Nombre y Firma
+  </div>
+</div>
+
+</div>
+<%= form.file_field :cuestionarios, multiple: true, class: "form-control" %>
+
+  <br>
+  <% unless local_assigns[:hide_buttons] %>
+  <div class="actions">&nbsp;
+    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+      <span><i class="glyphicon glyphicon-save"></i> Guardar</span>
+    <% end %>  
+    <button type="button" class="btn btn-success" id="Print" onclick="functionPrint()" data-dismiss="modal">
+    <span><i class="glyphicon glyphicon-print"></i></span> Imprimir</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+      <span><i class="glyphicon glyphicon-list"></i></span>Cuestionarios</button>
+  </div>
+  <% end %>
+
+<% end %>
+
+<script>
+  document.getElementById("Print").onclick = function () {
+    printElement(document.getElementById("printThis"));
+};
+
+function printElement(elem) {
+    var domClone = elem.cloneNode(true);
+
+    var $printSection = document.getElementById("printSection");
+
+    if (!$printSection) {
+        var $printSection = document.createElement("div");
+        $printSection.id = "printSection";
+        document.body.appendChild($printSection);
+    }
+
+    $printSection.innerHTML = "";
+    $printSection.appendChild(domClone);
+    window.print();
+}
+
+</script>

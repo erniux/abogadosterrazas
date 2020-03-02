@@ -84,9 +84,10 @@ class ExpedientesController < ApplicationController
                          audiencia_expedientes_attributes: [:id, :fecha, :asignado, :comentarios, :expedientes_id, :estatus, :estatus_audiencia_id, :fecha_fin, 
                                                             :citatorio, :_destroy], 
                          resumen_expedientes_attributes: [:id, :comentarios, :fecha_notificacion, :expediente_id, :estatus_procesal_id, :escrito, :_destroy ],
-                         resumen_links_attributes: [:id, :fecha_publicacion, :comentarios, :expediente_id, :accion_instancium_id, :_destroy ])
+                         resumen_links_attributes: [:id, :fecha_publicacion, :comentarios, :expediente_id, :accion_instancium_id, :_destroy ]) 
     end
 
 end
 
+ 
  

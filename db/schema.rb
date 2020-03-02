@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_132930) do
+ActiveRecord::Schema.define(version: 2020_03_01_234048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,96 @@ ActiveRecord::Schema.define(version: 2020_02_19_132930) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_audit_logs_on_user_id"
+  end
+
+  create_table "cuestionarios", force: :cascade do |t|
+    t.string "nombre"
+    t.string "appaterno"
+    t.string "apmaterno"
+    t.string "calle"
+    t.string "numero"
+    t.string "colonia"
+    t.string "municipio"
+    t.string "estado"
+    t.string "pais"
+    t.string "codigo_postal"
+    t.string "correo_electronico"
+    t.string "nombre_contratante"
+    t.string "puesto_contratante"
+    t.string "nombre_jefe_directo"
+    t.string "puesto_jefe_directo"
+    t.string "puesto"
+    t.text "funciones"
+    t.string "lugar_contratacion"
+    t.string "calle_contratacion"
+    t.string "numero_contratacion"
+    t.string "colonia_contratacion"
+    t.string "municipio_contratacion"
+    t.string "estado_contrtacion"
+    t.string "pais_contratacion"
+    t.string "codigo_postal_contratacion"
+    t.text "actividad_laboral"
+    t.string "horario_trabajo"
+    t.string "dias_trabajo"
+    t.float "salario_contratacion"
+    t.string "frecuencia_pago"
+    t.string "esquema_contratacion"
+    t.string "prestaciones"
+    t.string "forma_pago_salario"
+    t.date "fecha_ingreso_laboral"
+    t.date "fecha_separacion_laboral"
+    t.time "hora_separacion_laboral"
+    t.string "nombre_responsable_despido"
+    t.string "puesto_responsable_despido"
+    t.string "lugar_despido"
+    t.text "manifiesto_despido"
+    t.string "adeudos_laborales"
+    t.string "numero_imss"
+    t.boolean "imss_prestacion"
+    t.string "credito_infonavit"
+    t.boolean "infonavit_prestacion"
+    t.boolean "afore_prestacion"
+    t.string "afore_nombre"
+    t.boolean "accidentes_de_trabajo"
+    t.text "accidentes_detalle"
+    t.integer "adeudo_vacaciones_dias"
+    t.float "adeudo_vacaciones_monto"
+    t.integer "adeudo_vacaciones_anios"
+    t.integer "adeudo_prima_vacacional_dias"
+    t.float "adeudo_prima_vacacional_monto"
+    t.integer "adeudo_prima_vacacional_anios"
+    t.integer "adeudo_aguinaldo_dias"
+    t.float "adeudo_aguinaldo_monto"
+    t.integer "adeudo_aguinaldo_anios"
+    t.integer "adeudo_tiempo_extra_dias"
+    t.float "adeudo_tiempo_extra_monto"
+    t.integer "adeudo_tiempo_extra_anios"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "empresa"
+    t.string "condicion_salud"
+    t.string "otras_prestaciones_nombre_1"
+    t.string "otras_prestaciones_nombre_2"
+    t.string "otras_prestaciones_nombre_3"
+    t.string "otras_prestaciones_nombre_4"
+    t.string "otras_prestaciones_adeudo_1"
+    t.string "otras_prestaciones_adeudo_2"
+    t.string "otras_prestaciones_adeudo_3"
+    t.string "otras_prestaciones_adeudo_4"
+  end
+
+  create_table "denuncia_penals", force: :cascade do |t|
+    t.string "instancia"
+    t.string "numero_expediente"
+    t.string "demandante"
+    t.string "demandado"
+    t.string "motivo"
+    t.string "comentarios"
+    t.date "fecha_demanda"
+    t.bigint "expediente_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expediente_id"], name: "index_denuncia_penals_on_expediente_id"
   end
 
   create_table "entidad_responsables", force: :cascade do |t|
@@ -214,6 +304,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_132930) do
   add_foreign_key "audiencia_expedientes", "estatus_audiencias"
   add_foreign_key "audiencia_expedientes", "expedientes"
   add_foreign_key "audit_logs", "users"
+  add_foreign_key "denuncia_penals", "expedientes"
   add_foreign_key "expedientes", "entidad_responsables"
   add_foreign_key "expedientes", "estatus_procesals"
   add_foreign_key "expedientes", "users"
