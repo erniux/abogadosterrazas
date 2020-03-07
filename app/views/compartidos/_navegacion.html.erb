@@ -25,11 +25,11 @@
           <% end %>
         </li>
         <% if current_user %>
-          <li><%= link_to "inicio", root_path %></li>
-          <li><%= link_to "expedientes", expedientes_path %></li>
+          <li><%= link_to "Inicio", root_path %></li>
+          <li><%= link_to "Expedientes", expedientes_path %></li>
           <% if current_user.has_role?(:admin) %>
-            <li><%= link_to "audiencias", audiencias_path %></li>
-            <li><%= link_to "bitácora", audit_logs_path %></li>
+            <li><%= link_to "Audiencias", audiencias_path %></li>
+            <li><%= link_to "Bitácora", audit_logs_path %></li>
             <li>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">catálogos<span></span></a>
             <ul class="dropdown-menu">
@@ -42,7 +42,8 @@
               <li><%= link_to "Acción instancia", accion_instancia_path %></li>
             </ul>
           </li>
-          <li><%= link_to "cuestionarios", cuestionarios_path %></li>
+          <li><%= link_to "Cuestionarios", cuestionarios_path %></li>
+          <li><%= link_to "Resumen", consulta_path %></li>
           <% end %>
       </ul>
         <div class="nav navbar-right navbar-btn">
