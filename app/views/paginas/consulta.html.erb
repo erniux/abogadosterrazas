@@ -1,18 +1,20 @@
-<h3>Resumen expedientes</h3>
-<% @expedientes = Expediente.all.order("id DESC") %>
+<h3><%= @expedientes.count %> Epedientes</h3>
+
 <table class="table">
     <thead>
         <tr>
             <th>Expediente</th>
-            <th>Situación</th>
-            <th>Instancia</th>
+            <th>Instancia Responsable</th>
+            <th>Situación Actual</th>
+            <th>Situación Instancia</th>
             <th>Ultima audiencia</th>
         </tr>
     </thead>
     <tbody>
     <% @expedientes.each do |expediente| %>
         <tr>
-           <td><%= expediente.expediente %></td>
+           <td><%= link_to expediente.expediente, expediente  %></td>
+           <td><%= expediente.entidad_responsable.nombre %></td>
            <% @estatus = ResumenExpediente.where(expediente_id: expediente.id).order("fecha_notificacion DESC").first  %>
            <% @instancia = ResumenLink.where(expediente_id: expediente.id).order("fecha_publicacion DESC").first %>
            <% @audiencia = AudienciaExpediente.where(expediente_id: expediente.id).order("fecha DESC").first %>

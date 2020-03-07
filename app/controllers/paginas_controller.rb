@@ -16,6 +16,10 @@ class PaginasController < ApplicationController
 
   end 
 
+  def consulta
+	@expedientes = Expediente.all.order("entidad_responsable_id DESC")
+  end
+
 end
 
 
