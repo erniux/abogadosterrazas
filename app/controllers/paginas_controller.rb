@@ -17,7 +17,12 @@ class PaginasController < ApplicationController
   end 
 
   def consulta
-	@expedientes = Expediente.all.order("entidad_responsable_id DESC, anio ASC, expediente ASC")
+	if params[:term]
+		@expedientes = Expediente.search_by_full_expediente(params[:term])
+	elsif params[:term].nil?
+		@expedientes = Expediente.all.order("entidad_responsable_id DESC, anio ASC, expediente ASC")
+	  end 
+	
   end
 
 end
