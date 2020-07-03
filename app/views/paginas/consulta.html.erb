@@ -1,4 +1,8 @@
-<h3><%= @expedientes.count %> Epedientes</h3>
+<h3>Total de <strong><%= @expedientes.count %></strong> Expedientes</h3>
+
+<div class="text-center">
+  <%= paginate @expedientes, window: 1 %>
+</div>
 
 <table class="table">
     <thead>

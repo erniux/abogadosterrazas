@@ -10,7 +10,8 @@
     </div>
   <% end %>
   <div class="text-center">
-    <%= paginate @bitacora %>
+    <%= paginate @bitacora, window: 1 %>
+    
   </div>
 <table class="table">
 	<thead>
