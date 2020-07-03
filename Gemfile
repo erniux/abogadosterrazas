@@ -3,7 +3,22 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
  ruby '2.5.7'
 
-gem 'rails', '~> 5.2.3'
+#gem 'rails', '~> 5.2.3'
+## ESto es solo seleccionar las gemas necesarias
+gem "activerecord"
+gem "activestorage"
+gem "activemodel"
+#gem "actionpack"
+gem "actionview"
+gem "actionmailer"
+gem "activejob"
+gem "activesupport"
+gem "railties"
+gem "sprockets-rails"
+
+## Aqui termina el bloque
+
+
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
