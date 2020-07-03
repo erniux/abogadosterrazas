@@ -24,8 +24,10 @@
                 <th>Expediente</th>
                 <th>Demandante</th>
                 <th>Demandado</th>
+                <th>Entidad Responsable</th>
                 <th>Estado Procesal</th>
                 <th>Próxima Audiencia</th>
+                <th>Acciones</th>
                 <th></th>
             </tr>
         </thead>
@@ -79,7 +81,7 @@
                 <td><%= expediente.demandante.upcase %></td>
                 <td><%= expediente.demandado.upcase %></td>
                 <% instancia = EntidadResponsable.where(id: expediente.entidad_responsable_id) %>
-                <%= instancia.first.nombre %>
+                <td><%= instancia.first.nombre %></td>
                 <td><%= expediente.resumen_expedientes.last.estatus_procesal.estatus.upcase %></td>
                 <% audiencias = AudienciaExpediente.where(expediente_id: expediente.id).last %>
                 <% if !audiencias.nil? and audiencias.fecha > Date.today %>
