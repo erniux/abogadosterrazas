@@ -9,7 +9,9 @@
         </span>
     </div>
   <% end %>
-
+  <div class="text-center">
+    <%= paginate @bitacora %>
+  </div>
 <table class="table">
 	<thead>
 		<tr>
@@ -17,7 +19,7 @@
       <th>Demandante</th>
       <th>Demandado</th>
 			<th>Acción</th>	
-			<th>Fecha acción</th>
+			<th>Fecha</th>
       <th>Usuario</th>
 		</tr>
 	</thead>
