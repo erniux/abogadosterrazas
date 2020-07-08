@@ -13,9 +13,7 @@
 		<% else %>
 			<% fecha_fin = " - 00:00" %>
 		<% end %>
-		  
-		  
-		  
+		   
     	 <% if meeting.expediente.entidad_responsable_id == 1 %> <!-- Burocratico -->
     		<div class="content-box-buro">
 				  <%= link_to (meeting.expediente.expediente.to_s + ' ' + 

@@ -1,20 +1,20 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
- ruby '2.5.7'
+ ruby '2.6.3'
 
-#gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6'
 ## ESto es solo seleccionar las gemas necesarias
-gem "activerecord"
-gem "activestorage"
-gem "activemodel"
+##gem "activerecord"
+##gem "activestorage"
+##gem "activemodel"
 #gem "actionpack"
-gem "actionview"
-gem "actionmailer"
-gem "activejob"
-gem "activesupport"
-gem "railties"
-gem "sprockets-rails"
+##gem "actionview"
+##gem "actionmailer"
+##gem "activejob"##
+##gem "activesupport"
+##gem "railties"
+##gem "sprockets-rails"
 
 ## Aqui termina el bloque
 
