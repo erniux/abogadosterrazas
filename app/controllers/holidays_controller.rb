@@ -4,6 +4,7 @@ class HolidaysController < ApplicationController
 
 	def index
 		@holidays = Holiday.order('fecha')
+    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Holidays' )
 	end
 
 	def new

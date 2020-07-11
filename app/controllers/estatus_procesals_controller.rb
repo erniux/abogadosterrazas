@@ -4,6 +4,7 @@ class EstatusProcesalsController < ApplicationController
 
 	def index
 		@estatus_procesals = EstatusProcesal.all
+    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Estatus Procesal' )
 	end
 
 	def new

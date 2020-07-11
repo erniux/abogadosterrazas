@@ -9,6 +9,7 @@ class ExpedientesController < ApplicationController
     elsif params[:term].blank?
       @expedientes = Expediente.all.order(updated_at: 'DESC', expediente: 'DESC').page(params[:page]) 
     end 
+    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Expedientes' )
 
   end
 

@@ -4,6 +4,7 @@ class LinksController < ApplicationController
 
 	def index
 		@links = Link.all
+    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Links' )
 	end
 
 	def new

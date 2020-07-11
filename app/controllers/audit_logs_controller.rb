@@ -7,6 +7,7 @@ class AuditLogsController < ApplicationController
     	elsif params[:term].blank?
       		@bitacora = AuditLog.all.order(created_at: 'DESC', expediente: 'DESC').page(params[:page])  
     	end 
+    	AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú audit logs' )
   	end
   	
 end

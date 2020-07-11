@@ -4,6 +4,7 @@ class EstatusAudienciasController < ApplicationController
 
 	def index
 		@estatus_audiencias = EstatusAudiencia.all
+    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú estatus audiencias' )
 	end
 
 	def new

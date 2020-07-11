@@ -3,6 +3,7 @@ class AccionInstanciaController < ApplicationController
    
 def index     
     @acciones = AccionInstancium.all
+    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Accion Instancia' )
 end
 
 def show
