@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_040347) do
+ActiveRecord::Schema.define(version: 2020_07_16_023557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,6 +194,16 @@ ActiveRecord::Schema.define(version: 2020_07_08_040347) do
     t.index ["expediente_id"], name: "index_denuncia_penals_on_expediente_id"
   end
 
+  create_table "despachos", force: :cascade do |t|
+    t.string "colonia"
+    t.string "calle"
+    t.string "numero"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "abogado_id", null: false
+    t.index ["abogado_id"], name: "index_despachos_on_abogado_id"
+  end
+
   create_table "entidad_responsables", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
@@ -257,6 +267,16 @@ ActiveRecord::Schema.define(version: 2020_07_08_040347) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "archivero"
+    t.integer "cajon"
+    t.bigint "despacho_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "alias"
+    t.index ["despacho_id"], name: "index_locations_on_despacho_id"
+  end
+
   create_table "resumen_expedientes", force: :cascade do |t|
     t.string "comentarios"
     t.date "fecha_notificacion"
@@ -305,9 +325,11 @@ ActiveRecord::Schema.define(version: 2020_07_08_040347) do
   add_foreign_key "audiencia_expedientes", "expedientes"
   add_foreign_key "audit_logs", "users"
   add_foreign_key "denuncia_penals", "expedientes"
+  add_foreign_key "despachos", "abogados"
   add_foreign_key "expedientes", "entidad_responsables"
   add_foreign_key "expedientes", "estatus_procesals"
   add_foreign_key "expedientes", "users"
+  add_foreign_key "locations", "despachos"
   add_foreign_key "resumen_expedientes", "estatus_procesals"
   add_foreign_key "resumen_expedientes", "expedientes"
   add_foreign_key "resumen_links", "accion_instancia"

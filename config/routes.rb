@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :links
   resources :accion_instancia
   resources :cuestionarios
+  resources :despachos
+  
   
   root to: "paginas#inicio" 
 
