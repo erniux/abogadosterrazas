@@ -41,8 +41,6 @@ class DespachosController < ApplicationController
     respond_to do |format|
       if @despacho.update(despacho_params)
         format.html { redirect_to despachos_path, notice: 'Registro actualizado correctamente.' }
-      else
-        format.html { render :edit }
       end
     end
   end
@@ -50,7 +48,7 @@ class DespachosController < ApplicationController
   def destroy
     @despacho.destroy
     respond_to do |format|
-      format.html { redirect_to despachos_url, notice: 'Registro eliminado correctamente.' }
+      format.html { redirect_to despachos_urkl, notice: 'Registro eliminado correctamente.' }
     end
   end
 
