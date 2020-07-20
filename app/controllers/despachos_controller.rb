@@ -32,7 +32,7 @@ class DespachosController < ApplicationController
         #Crear Registro en la bitácora
         format.html { redirect_to despachos_path, notice: 'Registro creado correctamente.' }
       else
-        format.html { render :new }
+        format.html { redirect_to despachos_path, notice: 'Favor de intentar mas tarde.' }
       end
     end
   end
@@ -41,6 +41,8 @@ class DespachosController < ApplicationController
     respond_to do |format|
       if @despacho.update(despacho_params)
         format.html { redirect_to despachos_path, notice: 'Registro actualizado correctamente.' }
+      else
+        format.html { redirect_to despachos_path, notice: 'Favor de intentar mas tarde  .' }
       end
     end
   end
