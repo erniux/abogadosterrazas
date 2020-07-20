@@ -64,12 +64,8 @@
 
   <div class="row">
 	<hr> 
-	<div class="col-md-2">
-    	<%= form.text_field :ubicacion_fisica, placeholder: 'Ubicación Física', class: "form-control" %>
-	</div>
-
-	<div class="col-md-2">
-    	<%= form.text_field :despacho, placeholder: 'Despacho' , class: "form-control"%>
+	<div class="col-md-4">Ubicación Física:&nbsp;
+      <%= form.collection_select :location, Location.order(:alias),:alias,:alias, include_blank: true %>  
 	</div>
 
 	<div class="col-md-2">

@@ -81,7 +81,7 @@ class ExpedientesController < ApplicationController
     def expediente_params
       params.require(:expediente).permit(:anio, :expediente, :demandante, :demandado, :entidad_responsable, :socio, 
                                          :estado_procesal, :estatus_procesal_id, :entidad_responsable_id, :ubicacion_fisica, :despacho, :referencia1, :referencia2, 
-                                         :referencia3, :comentarios, :recomendado, :en_sociedad, :archivo, :user_id, :cliente, documentos: [],
+                                         :referencia3, :comentarios, :recomendado, :en_sociedad, :archivo, :user_id, :cliente, :location, documentos: [],
                          audiencia_expedientes_attributes: [:id, :fecha, :asignado, :comentarios, :expedientes_id, :estatus, :estatus_audiencia_id, :fecha_fin, 
                                                             :citatorio, :_destroy], 
                          resumen_expedientes_attributes: [:id, :comentarios, :fecha_notificacion, :expediente_id, :estatus_procesal_id, :escrito, :_destroy ],

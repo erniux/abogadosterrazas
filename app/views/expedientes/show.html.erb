@@ -12,7 +12,9 @@
 	</div>
 	<div class="col-md-6">
 		<h4>EXPEDIENTE</h4>
-		<p>Ubicación: <%= @expediente.ubicacion_fisica.upcase %>, <%= @expediente.despacho.upcase %></p>
+		<% if !@expediente.location.nil? %>
+			<p>Ubicación: <%= @expediente.colonia(@expediente.location).upcase + ' ' + @expediente.location %> </p>
+		<% end %>
 		<p>Responsable: <%= @expediente.socio %></p>
 		<p>Recomendado: <%= @expediente.recomendado %></p>
 		<p>Sociedad: <%= @expediente.en_sociedad %></p>

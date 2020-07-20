@@ -37,6 +37,7 @@
 		<tr>
 			<th>Despacho</th>	
 			<th>Calle y Número</th>
+			<th>Responsable</th>
 			<th>Total Ubicaciones</th>
 		</tr>
 	</thead>
@@ -44,7 +45,8 @@
 		<% @despachos.each do |despacho| %>
 			<tr>
 				<td><%= despacho.colonia %></td>
-				<td><%= despacho.calle + '/' + despacho.numero %></td>
+				<td><%= despacho.calle + ' ' + despacho.numero %></td>
+				<td><%= despacho.abogado(despacho.abogado_id) %> </td>
 				<td><%= despacho.locations.count %></td>
 				<td><%= link_to  edit_despacho_path(despacho), class: "btn btn-info", remote: true  do %>
 						<i class="glyphicon glyphicon-pencil"></i>

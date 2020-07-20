@@ -61,7 +61,7 @@ class DespachosController < ApplicationController
 
     def despacho_params
       params.require(:despacho).permit(:colonia, :calle, :numero, :abogado_id,
-                         locations_attributes: [:archivero, :cajon, :despacho_id, :alias, :_destroy])
+                         locations_attributes: [:id, :archivero, :cajon, :despacho_id, :alias, :_destroy])
     end
 
 end

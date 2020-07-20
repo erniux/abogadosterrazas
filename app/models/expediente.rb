@@ -5,6 +5,7 @@ class Expediente < ApplicationRecord
 	belongs_to :user
 	belongs_to :entidad_responsable
 	belongs_to :estatus_procesal
+	
 
 	has_many_attached :documentos
 	
@@ -39,6 +40,9 @@ class Expediente < ApplicationRecord
 		nombre_socio = Abogado.where(id: socio).first.nombre
 	  end
 	  
+	def colonia(location)
+    	despacho = Location.where(alias: location).first.despacho.colonia
+    end  
   	 
 
   	def to_upper

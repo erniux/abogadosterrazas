@@ -5,17 +5,19 @@
                 <div class="col-md-1"><%= link_to_remove_association '', f, class: "btn btn-danger glyphicon glyphicon-trash" %></div>
             <% end %>
             <div class="col-md-3">
-                <%= f.text_field :archivero, placeholder: 'Núm. Archivero', class: "form-control" %>
+                <%= f.text_field :archivero, placeholder: 'Núm. Archivero', class: "form-control", required: true %>
             </div>
             <div class="col-md-3">
-                <%= f.text_field :cajon, placeholder: 'Núm. Cajón', class: "form-control" %> 
+                <%= f.text_field :cajon, placeholder: 'Núm. Cajón', class: "form-control", required: true %> 
             </div>
             <div class="col-md-3">	 
-                <%= f.text_field :alias, placeholder: 'Alias', class: "form-control" %> 
+                <%= f.text_field :alias, placeholder: 'Alias', class: "form-control", required: true, prompt: 'Choose an existing owner' %> 
             </div>
         </div>
          
     </p>
 </div>  
 
+
+ 
  
