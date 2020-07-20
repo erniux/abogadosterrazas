@@ -13,7 +13,7 @@
   <%= form.label :numero %>
   <%= form.text_field :numero, class: "form-control", placeholder: "Número", required: true %>
   <p><%= form.label 'Abogado Responsable' %>&nbsp;
-  <%= form.collection_select :abogado_id, Abogado.order(:nombre),:id,:nombre,  class: "form-control" %> 
+  <%= form.collection_select :abogado_id, Abogado.order(:nombre),:id,:nombre, include_blank: true,  class: "form-control" %> 
 </p>
   
  
