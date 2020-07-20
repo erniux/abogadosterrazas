@@ -32,7 +32,7 @@ class DespachosController < ApplicationController
         #Crear Registro en la bitácora
         format.html { redirect_to despachos_path, notice: 'Registro creado correctamente.' }
       else
-        format.html { redirect_to despachos_path, notice: 'Favor de intentar mas tarde.' }
+        format.html { redirect_to despachos_path, alert: 'Favor de intentar mas tarde.' }
       end
     end
   end
@@ -42,7 +42,7 @@ class DespachosController < ApplicationController
       if @despacho.update(despacho_params)
         format.html { redirect_to despachos_path, notice: 'Registro actualizado correctamente.' }
       else
-        format.html { redirect_to despachos_path, notice: 'Favor de intentar mas tarde  .' }
+        format.html { redirect_to despachos_path, alert: 'Favor de intentar mas tarde  .' }
       end
     end
   end
@@ -50,7 +50,7 @@ class DespachosController < ApplicationController
   def destroy
     @despacho.destroy
     respond_to do |format|
-      format.html { redirect_to despachos_urkl, notice: 'Registro eliminado correctamente.' }
+      format.html { redirect_to despachos_url, notice: 'Registro eliminado correctamente.' }
     end
   end
 
@@ -61,7 +61,7 @@ class DespachosController < ApplicationController
 
     def despacho_params
       params.require(:despacho).permit(:colonia, :calle, :numero, :abogado_id,
-                         locations_attributes: [:id, :archivero, :cajon, :despacho_id, :alias, :_destroy])
+                         locations_attributes: [:id, :archivero, :cajon   , :alias, :_destroy])
     end
 
 end
