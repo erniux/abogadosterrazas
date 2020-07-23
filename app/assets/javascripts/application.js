@@ -19,5 +19,7 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require gritter
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 

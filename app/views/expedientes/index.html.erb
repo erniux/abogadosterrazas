@@ -1,5 +1,13 @@
 <div>
     <h3>Catálogo de Expedientes</h3>
+    <div class= "row">
+        <div class="col-md-6">
+            <%= line_chart Expediente.group_by_month(:created_at).count %>
+        </div>
+        <div class="col-md-6">
+            <%= column_chart @column_data, stacked: true %>
+        </div>
+    </div>
 
     <%= form_tag expedientes_path, method: :get do %>
     <div class="input-group">
