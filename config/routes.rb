@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'paginas/inicio', as: 'inicio'
   get 'paginas/consulta', as: 'consulta'
-  get 'paginas/estadistica', as: 'estadistica'
 
 
   devise_for :users, path: '', path_names: { sign_in: 'ingresar', sign_out: 'Salir', sign_up: 'registrar'}

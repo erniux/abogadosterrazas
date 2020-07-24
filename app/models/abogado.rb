@@ -1,6 +1,5 @@
 class Abogado < ApplicationRecord
   validates_presence_of :nombre, :iniciales
- 
   
   before_save :to_upper
 
