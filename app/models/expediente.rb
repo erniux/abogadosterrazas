@@ -18,7 +18,7 @@ class Expediente < ApplicationRecord
 	enum cliente: {demandante: 0, demandado: 1}
 	
 	validates_uniqueness_of :expediente
-	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :ubicacion_fisica, :despacho, :entidad_responsable_id 
+	validates_presence_of :anio, :expediente, :demandante, :demandado, :socio, :location, :entidad_responsable_id 
 	
 	accepts_nested_attributes_for :audiencia_expedientes, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :resumen_expedientes, reject_if: :all_blank, allow_destroy: true

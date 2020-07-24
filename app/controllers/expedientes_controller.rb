@@ -3,10 +3,7 @@ class ExpedientesController < ApplicationController
   access abogado: {except: [:destroy]}, admin: :all
 
   def index
-    #@expedientes = Expediente.all.order("anio DESC")
-    @column_data = EntidadResponsable.ids.map do |entidad| 
-      { name: EntidadResponsable.where(id: entidad).group(:id).first.nombre, data: Expediente.where(entidad_responsable_id: entidad).group_by_month(:created_at).count}
-    end
+    
     if params[:term]
       @expedientes = Expediente.search_by_full_expediente(params[:term]).page(params[:page])
     elsif params[:term].blank?

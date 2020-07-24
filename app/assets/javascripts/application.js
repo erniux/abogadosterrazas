@@ -16,6 +16,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require moment/moment
+//= require daterangepicker
 //= require bootstrap-sprockets
 //= require cocoon
 //= require gritter

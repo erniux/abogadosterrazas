@@ -1,0 +1,64 @@
+<div class="row">
+	<div class="col-md-2">
+		<input type="text" id="rangepicker"  class="form-control" />
+	</div>
+</div>
+
+
+
+<div class= "row">
+	<div class="col-md-12">
+		<%= column_chart @expedientes_nuevos, stacked: true %>
+		<%= column_chart @expedientes_actualizados, stacked: true %>
+		<%= line_chart @expedientes %>
+		
+		<% Expediente.all.each do |exp| %> 
+			<% if exp.documentos.attached? %>
+				 
+        		<% exp.documentos.each do |doc| %>
+                	<%= doc.inspect  %>
+                	 	
+				<% end %>
+			<% end %>
+		<% end %>
+		 
+    </div>
+</div>
+
+<%= form_tag estadistica_path, method: :get do %>
+	<%= hidden_field_tag :start %>
+	<%= hidden_field_tag :end %>
+<% end %>
+
+
+
+
+ 
+
+<script type="text/javascript">
+	var ranges = {
+		"7 dias": ["<%= format_date(Date.current - 7 )%>","<%= format_date(Date.current) %>"],	
+		"30 dias": ["<%= format_date(Date.current - 30 )%>","<%= format_date(Date.current) %>"],
+		"Mes Actual": ["<%= format_date(Date.current.beginning_of_month )%>","<%= format_date(Date.current) %>"], 	
+		"Mes Anterior": ["<%= format_date(1.month.ago.beginning_of_month )%>","<%= format_date(1.month.ago.end_of_month) %>"], 	
+		"Año Actual": ["<%= format_date(Date.current.beginning_of_year )%>","<%= format_date(Date.current) %>"]	
+	};
+
+	$("#rangepicker").daterangepicker({
+		startDate: moment("<%= l @start_date, format: '%Y-%m-%d' %>"),
+		endDate: moment("<%= l @end_date, format: '%Y-%m-%d' %>"),
+		ranges: ranges,
+		alwaysShowCalendars: true
+
+
+	}, function(start, end, label) {
+	 
+		$("#start").val(start.format('YYYY-MM-DD'));
+		$("#end").val(end.format('YYYY-MM-DD'));
+
+		$("form").submit();
+
+	});
+
+
+</script>
