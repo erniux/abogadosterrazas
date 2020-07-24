@@ -1,5 +1,4 @@
-<%= form_with(model: @despacho, local: true) do |form| %>
-  <%= form.text_field :colonia %>
+<%= form_with(model: @despacho, local: true) do |form| %>	
   <%= form.submit "Guardar", class: 'btn btn-success' %>
 <% end %>
 <%= link_to "Regresar a Catálogo", despachos_path, class: "btn btn-primary" %>

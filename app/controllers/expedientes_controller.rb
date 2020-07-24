@@ -3,7 +3,7 @@ class ExpedientesController < ApplicationController
   access abogado: {except: [:destroy]}, admin: :all
 
   def index
-    #@expedientes = Expediente.all.order("anio DESC")
+    
     if params[:term]
       @expedientes = Expediente.search_by_full_expediente(params[:term]).page(params[:page])
     elsif params[:term].blank?

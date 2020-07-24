@@ -36,7 +36,7 @@
 	<% if @expediente.documentos.attached? %>
         <% @expediente.documentos.each do |documento| %>
               <% nombre_archivo = documento.filename.to_s  %>
-              <%= link_to nombre_archivo.truncate(25), documento, target: '_blank' %> <br/>
+              <%= link_to nombre_archivo.truncate(25), documento, target: '_blank', style: 'color:Black;'  %> <br/>
              
 			<% end %>
 	<% end %>
@@ -77,7 +77,7 @@
 				<% end %>
 				<td><%= audiencia.estatus_audiencia.estatus.upcase %></td>
 				<% if audiencia.citatorio.attached? %>
-					<td><%= link_to audiencia.citatorio.filename, audiencia.citatorio, target: '_blank' %> </td>
+					<td><%= link_to audiencia.citatorio.filename, audiencia.citatorio, target: '_blank', style: 'color:Black;' %> </td>
 				<% end %>
 				
 			</tr>
@@ -110,7 +110,7 @@
 				<% end %>
 				
 				<% if resumen.escrito.attached? %>
-					<td><%= link_to resumen.escrito.filename, resumen.escrito, target: '_blank' %> </td>
+					<td><%= link_to resumen.escrito.filename, resumen.escrito, target: '_blank', style: 'color:Black;' %> </td>
 				<% end %>
 			</tr>
 		<% end %>
