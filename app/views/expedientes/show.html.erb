@@ -2,150 +2,186 @@
 <%= link_to 'Expedientes', expedientes_path, class: "btn btn-primary btn-md" %>
   
 
- <div class="row">
-	<div class="col-md-6">
+<div class="row">
+	<div class="col-md-7">
 		<h3 class="btn btn-info btn-lg">Número Expediente: <%= @expediente.expediente %>&nbsp;&nbsp;Año: <%= @expediente.anio %></h3>
 		<h4><%= @expediente.demandante.upcase  %> <strong>vs</strong> <%= @expediente.demandado.upcase %></h4>
-		<h5>INSTANCIA:&nbsp;<%= @expediente.entidad_responsable.nombre.upcase %> </h5>
-		<h5 class="btn btn-danger">ESTADO PROCESAL:&nbsp;<%= @expediente.resumen_expedientes.order('fecha_notificacion ASC').last.estatus_procesal.estatus.upcase %></h5>
-
+		<h5><strong>INSTANCIA:</strong>&nbsp;<%= @expediente.entidad_responsable.nombre.upcase %> </h5>
+		<h5 class="btn btn-danger">ESTADO PROCESAL:&nbsp;<%= ultimo_estado(@expediente) %></h5>
+		<h5><%=  %></h5>
 	</div>
-	<div class="col-md-6">
-		<h4>EXPEDIENTE</h4>
+	<div class="col-md-5">
+		<h4> Resumen </h4>
+		<% linea_tiempo(@expediente).each do |item| %>
+		
+ 			<div class="row">
+ 				<div class="col-md-2">
+ 					<%= item[0].strftime("%d/%m/%Y") %>
+ 				</div>
+ 				<div class="col-sm-3 linea_tiempo"> </div>
+ 				<div class="col-md-7">
+ 					<%= item[2] + ' => ' + item[1] %>
+ 				</div>
+ 			</div>
+ 		<% end %>
+	</div>
+	<div class="col-md-7"> 
 		<% if !@expediente.location.nil? %>
-			<p>Ubicación: <%= @expediente.colonia(@expediente.location).upcase + ' ' + @expediente.location %> </p>
+			<p><strong>Ubicación:</strong>&nbsp;<%= @expediente.colonia(@expediente.location).upcase + ' (' + @expediente.location + ')' %> </p>
 		<% end %>
-		<p>Responsable: <%= @expediente.socio %></p>
-		<p>Recomendado: <%= @expediente.recomendado %></p>
-		<p>Sociedad: <%= @expediente.en_sociedad %></p>
-		 
-		<% if !@expediente.referencia1.nil? %>
-			<h5>Referencias</h5>
-			<p><%= @expediente.referencia1.upcase %> </p>
+		<p><strong>Responsable:</strong>&nbsp;<%= @expediente.socio %></p>
+		<% if !@expediente.recomendado.blank? %>
+			<p><strong>Recomendado:</strong>&nbsp;<%= @expediente.recomendado %></p>
 		<% end %>
-		<% if !@expediente.referencia2.nil? %>
-			<p><%= @expediente.referencia2.upcase %> </p>
+		<% if !@expediente.en_sociedad.blank? %>
+			<p><strong>Sociedad:</strong>&nbsp;<%= @expediente.en_sociedad %></p>
+		<% end %> 
+		<% if !@expediente.referencia1.blank? %>
+			<p><strong>Referencias:</strong>&nbsp;
+			<%= @expediente.referencia1.upcase %> 
 		<% end %>
-		<% if !@expediente.referencia3.nil? %>
-			<p><%= @expediente.referencia3.upcase %> </p>
+		<% if !@expediente.referencia2.blank? %>
+			<strong>|</strong>&nbsp;<%= @expediente.referencia2.upcase %> 
 		<% end %>
-		<p>COMENTARIOS: <%= @expediente.comentarios.to_s.upcase %></p>
+		<% if !@expediente.referencia3.blank? %>
+			<strong>|</strong>&nbsp;<%= @expediente.referencia3.upcase %> 
+		<% end %>
+		<% if !@expediente.comentarios.blank?  %>
+			<p><strong>COMENTARIOS:</strong>&nbsp;<%= @expediente.comentarios.to_s.upcase %></p>
+		<% end %>
+		</p>
 		
-	 
- <h4>Documentos Anexos</h4>
-	<% if @expediente.documentos.attached? %>
-        <% @expediente.documentos.each do |documento| %>
+		<% if @expediente.documentos.attached? %>
+			<strong>Documentos Anexos:</strong>&nbsp;
+        	<% @expediente.documentos.each do |documento| %>
               <% nombre_archivo = documento.filename.to_s  %>
-              <%= link_to nombre_archivo.truncate(25), documento, target: '_blank', style: 'color:Black;'  %> <br/>
-             
+              <strong>|</strong>&nbsp;<%= link_to nombre_archivo.truncate(25), documento, target: '_blank'  %>
 			<% end %>
-	<% end %>
-</div>
-<hr>
-</div>
-
-<div class="card audiencias">
-<h3> Audiencias </h3>
-
-<table class="table">
-	<thead>
-   		<tr>
-     		<th>Fecha inicio</th>
-			<th>Fecha término</th>
-     		<th>Expediente</th>
-     		<th>Instancia</th>
-     		<th>Asignado</th>
-     		<th>Motivo de audiencia</th>
-			<th>Estatus</th>
-			<th>Anexos</th>
-     		
-   		</tr>
-  	</thead>
-		
-	<tbody>
-		<% @expediente.audiencia_expedientes.order(:fecha).each do |audiencia| %>
-			<tr>
-				<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha.nil? %></td>
-				<td><%= audiencia.fecha_fin.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha_fin.nil? %></td>
-				<td><%= audiencia.expediente.expediente %></td> 
-				<td><%= audiencia.expediente.entidad_responsable.nombre %></td>
-				<td><%= audiencia.asignado.upcase if !audiencia.asignado.nil? %></td>
-				<% if audiencia.comentarios.nil? %>
-					<td><%= audiencia.comentarios %></td>
-				<% else %>
-					<td><%= audiencia.comentarios.upcase %></td>
-				<% end %>
-				<td><%= audiencia.estatus_audiencia.estatus.upcase %></td>
-				<% if audiencia.citatorio.attached? %>
-					<td><%= link_to audiencia.citatorio.filename, audiencia.citatorio, target: '_blank', style: 'color:Black;' %> </td>
-				<% end %>
-				
-			</tr>
 		<% end %>
-	</tbody>
-</table>
+	</div>
+	<hr>
 </div>
-<div class="mi_estado_procesal">
-<h3> Histórico Estado Procesal de Expediente </h3>
+</br>
 
-<table class="table">
-	<thead>
-   		<tr>
-     		<th>Fecha notificación</th>
-			 <th>Estado procesal</th>
-			 <th>Detalle</th>
-			 <th>Anexos</th>
-   		</tr>
-  	</thead>
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#audiencias" role="button" aria-expanded="false" aria-controls="audiencias">Audiencias</a>
+  <button class="btn btn-verde" type="button" data-toggle="collapse" data-target="#despacho" aria-expanded="false" aria-controls="despacho">Despacho</button>
+  <button class="btn btn-gris" type="button" data-toggle="collapse" data-target="#instancia" aria-expanded="false" aria-controls="despacho"><%= @expediente.entidad_responsable.nombre.capitalize %></button>
+  <button class="btn btn-success" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="audiencias despacho instancia">Mostrar Todo</button>
+</p>
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="audiencias">
+      <div class="card card-body">
+      	<div class="card audiencias">
+      		<table class="table">
+				<thead>
+   					<tr>
+     					<th>Fecha inicio</th>
+						<th>Fecha término</th>
+     					<th>Expediente</th>
+     					<th>Instancia</th>
+     					<th>Asignado</th>
+     					<th>Motivo de audiencia</th>
+						<th>Estatus</th>
+						<th>Anexos</th>
+   					</tr>
+  				</thead>
+					
+				<tbody>
+					<% @expediente.audiencia_expedientes.order(:fecha).each do |audiencia| %>
+						<tr>
+							<td><%= audiencia.fecha.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha.nil? %></td>
+							<td><%= audiencia.fecha_fin.strftime("%d/%m/%Y %H:%M:%S") if !audiencia.fecha_fin.nil? %></td>
+							<td><%= audiencia.expediente.expediente %></td> 
+							<td><%= audiencia.expediente.entidad_responsable.nombre %></td>
+							<td><%= audiencia.asignado.upcase if !audiencia.asignado.nil? %></td>
+							<% if audiencia.comentarios.nil? %>
+								<td><%= audiencia.comentarios %></td>
+							<% else %>
+								<td><%= audiencia.comentarios.upcase %></td>
+							<% end %>
+							<td><%= audiencia.estatus_audiencia.estatus.upcase %></td>
+							<% if audiencia.citatorio.attached? %>
+								<td><%= link_to audiencia.citatorio.filename, audiencia.citatorio, target: '_blank', style: 'color:Black;' %> </td>
+							<% end %>
+							
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>         
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="collapse multi-collapse" id="despacho">
+      <div class="card card-body">
+        <div class="mi_estado_procesal">
+			<table class="table">
+				<thead>
+   					<tr>
+    			 		<th>Fecha notificación</th>
+						 <th>Estado procesal</th>
+						 <th>Detalle</th>
+						 <th>Anexos</th>
+   					</tr>
+  				</thead>
 		
-	<tbody>
-		<% @expediente.resumen_expedientes.order(:fecha_notificacion).each do |resumen| %>
-			<tr>
-				<td><%= resumen.fecha_notificacion.strftime("%d/%m/%Y") if !resumen.fecha_notificacion.nil? %></td>
-				<td><%= resumen.estatus_procesal.estatus %></td>
-				<% if resumen.comentarios.nil? %>
-					<td><%= resumen.comentarios %></td>
-				<% else %>
-					<td><%= resumen.comentarios.upcase %></td>
-				<% end %>
-				
-				<% if resumen.escrito.attached? %>
-					<td><%= link_to resumen.escrito.filename, resumen.escrito, target: '_blank', style: 'color:Black;' %> </td>
-				<% end %>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+				<tbody>
+					<% @expediente.resumen_expedientes.order(:fecha_notificacion).each do |resumen| %>
+						<tr>
+							<td><%= resumen.fecha_notificacion.strftime("%d/%m/%Y") if !resumen.fecha_notificacion.nil? %></td>
+							<td><%= resumen.estatus_procesal.estatus %></td>
+							<% if resumen.comentarios.nil? %>
+								<td><%= resumen.comentarios %></td>
+							<% else %>
+								<td><%= resumen.comentarios.upcase %></td>
+							<% end %>
+							
+							<% if resumen.escrito.attached? %>
+								<td><%= link_to resumen.escrito.filename, resumen.escrito, target: '_blank', style: 'color:Black;' %> </td>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="collapse multi-collapse" id="instancia">
+      <div class="card card-body">
+        <div class="entidad_estado_procesal">
+			<table class="table">
+				<thead>
+			   		<tr>
+			     		<th>Fecha publicación</th>
+			     		<th>Acción</th>
+						 <th>Comentarios</th>
+			   		</tr>
+			  	</thead>
+					
+				<tbody>
+					<% @expediente.resumen_links.order(:fecha_publicacion).each do |links| %>
+						<tr>
+							<td><%= links.fecha_publicacion.strftime("%d/%m/%Y") if !links.fecha_publicacion.nil? %></td>
+							<% if links.comentarios.nil? %>
+								<td><%= links.comentarios %></td>
+							<% else %>
+								<td><%= links.comentarios.upcase %></td>
+							<% end %>
+							<td><%= links.accion_instancium.accion %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="entidad_estado_procesal">
-<h3> Resumen de situaciones Instancia Responsable </h3>
-
-<table class="table">
-	<thead>
-   		<tr>
-     		<th>Fecha publicación</th>
-     		<th>Acción</th>
-			 <th>Comentarios</th>
-   		</tr>
-  	</thead>
-		
-	<tbody>
-		<% @expediente.resumen_links.order(:fecha_publicacion).each do |links| %>
-			<tr>
-				<td><%= links.fecha_publicacion.strftime("%d/%m/%Y") if !links.fecha_publicacion.nil? %></td>
-				<% if links.comentarios.nil? %>
-					<td><%= links.comentarios %></td>
-				<% else %>
-					<td><%= links.comentarios.upcase %></td>
-				<% end %>
-				<td><%= links.accion_instancium.accion %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
- 	</div>
-
-
- 	
-	

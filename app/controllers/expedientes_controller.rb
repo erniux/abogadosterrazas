@@ -73,10 +73,34 @@ class ExpedientesController < ApplicationController
     redirect_back(fallback_location: request.referer)
   end
 
+
+  def linea_tiempo 
+      arr = []
+      i = 0
+      @expediente.audiencia_expedientes.each do |audiencia|
+        arr[i] = [i, audiencia.fecha, audiencia.estatus_audiencia.estatus, 'audiencia']
+        i = i + 1
+      end
+      
+      @expediente.resumen_expedientes.each do |despacho| 
+        arr[i] = [i, despacho.fecha_notificacion, despacho.estatus_procesal.estatus, 'despacho']  
+        i = i + 1 
+      end 
+
+      @expediente.resumen_links.each do |instancia| 
+        arr[i] = [i, instancia.fecha_publicacion, instancia.accion_instancium.accion, 'instancia']  
+      i = i + 1 
+      end 
+
+      linea_tiempo = arr
+    end
+
   private
     def set_expediente
       @expediente = Expediente.find(params[:id])
     end
+
+    
 
     def expediente_params
       params.require(:expediente).permit(:anio, :expediente, :demandante, :demandado, :entidad_responsable, :socio, 

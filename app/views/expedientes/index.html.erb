@@ -82,7 +82,9 @@
                 <td><%= expediente.demandado.upcase %></td>
                 <% instancia = EntidadResponsable.where(id: expediente.entidad_responsable_id) %>
                 <td><%= instancia.first.nombre %></td>
-                <td><%= expediente.resumen_expedientes.last.estatus_procesal.estatus.upcase %></td>
+                
+                <td><%= ultimo_estado(expediente) %></td>
+    
                 <% audiencias = AudienciaExpediente.where(expediente_id: expediente.id).last %>
                 <% if !audiencias.nil? and audiencias.fecha > Date.today %>
                 <td><%= audiencias.fecha.strftime("%d-%m-%Y %H:%M") %></td>
