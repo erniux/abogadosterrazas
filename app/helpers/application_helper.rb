@@ -22,9 +22,10 @@ module ApplicationHelper
               arr[i] = {"fecha"=>instancia.fecha_publicacion, "estatus"=>instancia.accion_instancium.accion, "fuente"=>"instancia"} 
               i = i + 1
           end
+
           arr_values = (arr.map {|item| [item["fecha"], item["estatus"], item["fuente"]]})
           arr_sorted = arr_values.sort { |l, r| l[0]<=>r[0] }
-		  arr_sorted.last[1]
+		      arr_sorted.last[1]
 	 end
 
 	 def linea_tiempo(expediente)
