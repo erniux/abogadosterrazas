@@ -30,7 +30,7 @@ google:
 
 google_dev:
    service: GCS
-   project: webredes
+   project: abogadosterrazas
    credentials: <%= Rails.root.join("config/secrets/abogadosterrazas.json") %>
    bucket: bucket-abogadosterrazas-1
 
