@@ -39,7 +39,9 @@ gem 'simple_calendar', '~> 2.3'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'faker', '~> 2.2'
 gem "google-cloud-storage", "~> 1.8", require: false
-gem 'chartkick', '~> 3.3', '>= 3.3.1'
+ 
+gem "chartkick", ">= 3.4.0"
+	
 gem 'groupdate', '~> 5.0'
  
 
