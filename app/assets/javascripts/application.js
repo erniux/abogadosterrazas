@@ -19,9 +19,9 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require gritter
-//= require Chart.bundle
-//= require chartkick
-//= require moment/moment
-//= require daterangepicker
+// require Chart.bundle
+// require chartkick
+// require moment/moment
+// require daterangepicker
 //= require_tree .
 
