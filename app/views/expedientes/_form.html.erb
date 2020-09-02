@@ -38,11 +38,11 @@
 
 	  <div class="col-md-4">
       <%= form.label 'Abogado' %>&nbsp;
-      <%= form.collection_select :socio, Abogado.order(:nombre),:nombre,:nombre, include_blank: true, class: "form-control" %> 
+       <%= form.collection_select(:socio,  Abogado.order(:nombre), :nombre, :nombre, { prompt: "Seleccione Abogado"} , {class: 'form-control'}) %> 
 	  </div>
      
     <div class="col-md-2"> Instancia:&nbsp;
-      <%= form.collection_select :entidad_responsable_id, EntidadResponsable.order(:nombre),:id,:nombre, include_blank: true %>  
+       <%= form.collection_select(:entidad_responsable_id,  EntidadResponsable.order(:nombre), :id, :nombre, { prompt: "Seleccione entidad responsable"} , {class: 'form-control'}) %> 
     </div>
     
        
@@ -66,7 +66,7 @@
   <div class="row">
 	<hr> 
 	<div class="col-md-4">Ubicación Física:&nbsp;
-      <%= form.collection_select :location, Location.order(:alias),:alias,:alias, include_blank: true %>  
+      <%= form.collection_select(:location,  Location.order(:alias), :alias, :alias, { prompt: "Seleccione una ubicación"} , {class: 'form-control'}) %> 
 	</div>
 
 	<div class="col-md-2">

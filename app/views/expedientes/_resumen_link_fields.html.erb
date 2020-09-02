@@ -8,7 +8,7 @@
                 <%= f.date_field :fecha_publicacion, placeholder: 'Fecha publicación', date_format: 'YYYY-MM-DD', class: "form-control" %>
             </div>
             <div class="col-md-3">
-                <%= f.collection_select :accion_instancium_id, AccionInstancium.order(:accion),:id,:accion, include_blank: true %> 
+                <%= f.collection_select(:accion_instancium_id,  AccionInstancium.order(:accion), :id, :accion, { prompt: "Seleccione estatus instancia"} , {class: 'form-control'}) %> 
             </div>	 
             <div class="col-md-3">
   	            <%= f.text_area :comentarios, placeholder: 'comentarios', cols: 50, rows: 2, class: "form-control"  %>

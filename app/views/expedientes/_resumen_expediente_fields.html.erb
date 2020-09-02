@@ -8,7 +8,7 @@
                 <%= f.date_field :fecha_notificacion, placeholder: 'Fecha notificación', date_format: 'YYYY-MM-DD hh:mm', class: "form-control" %>
             </div>
             <div class="col-md-3">
-                <%= f.collection_select :estatus_procesal_id, EstatusProcesal.order(:estatus),:id,:estatus, include_blank: true %> 
+                <%= f.collection_select(:estatus_procesal_id,  EstatusProcesal.order(:estatus), :id, :estatus, { prompt: "Seleccione estatus despacho"} , {class: 'form-control'}) %> 
             </div>	 
             <div class="col-md-5">
   	            <%= f.text_area :comentarios, placeholder: 'Comentarios', cols: 10, rows: 2, class: "form-control"  %>
