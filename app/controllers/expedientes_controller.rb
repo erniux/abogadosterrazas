@@ -4,12 +4,12 @@ class ExpedientesController < ApplicationController
 
   def index
     
-    if params[:term]
+    if params[:term].present?
       @expedientes = Expediente.search_by_full_expediente(params[:term]).page(params[:page])
-    elsif params[:term].blank?
+    elsif 
       @expedientes = Expediente.all.order(updated_at: 'DESC', expediente: 'DESC').page(params[:page]) 
     end 
-    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Expedientes' )
+    AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Expedientes', archivo: params[:term] )
 
   end
 
