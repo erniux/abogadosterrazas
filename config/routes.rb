@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :expedientes do
     delete :delete_upload_documentos
   end
-
   
   resources :estatus_procesals
   resources :estatus_audiencias

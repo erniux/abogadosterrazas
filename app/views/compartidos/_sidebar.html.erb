@@ -20,7 +20,7 @@
     
   	<% @prox_audiencias.each do |a| %>
       <% active = params[:entidad_responsable_id].to_i == a.entidad_responsable_id ?  'active' : '' %>
-      <%= link_to inicio_path(entidad_responsable_id: a.entidad_responsable_id), class: "list-group-item #{active}" do %>
+      <%= link_to inicio_path(entidad_responsable_id: a.entidad_responsable_id), class: "list-group-item #{active}"  do %>
 		    <%= a.entidad_responsable.nombre.upcase  %><span class="badge"><%= a.count %></span>
       <% end %>
 	 <% end %>
@@ -30,12 +30,38 @@
  <div class="links">
   <span class="list-group-item active">LINKS EXTERNOS </span>
   <% @links.each do |link| %>
-    <%= link_to link.link , class: "list-group-item", target: "_blank" do %>
+    <%= link_to link.link , class: "list-group-item", onclick: "return check('#{link.link}');", target: "_blank" do %>
       <%= link.entidad.humanize %><span class="badge"><i class="glyphicon glyphicon-link"></i></span>
     <% end %>
-    <% end %>
+  <% end %>
   </div>
 </div>
  
 
-	
+	<a href="#" onclick="this.style.backgroundColor='#009900';this.style.color='#FFFFFF';">Paint it green</a>
+
+  <script>
+    var check = function(valor ) {
+    console.log(valor);
+    $.ajax({
+      type: "POST",
+      url: "/audit_logs/",
+      data: {
+        archivo: valor,
+        accion: 'Consulta link Externo',
+         
+      },
+      error: function(error) {
+            console.log(error);
+            return false;
+          },
+  success: function(data) {
+             console.log(data);
+             return false;
+          },
+
+    })
+
+
+}
+  </script>

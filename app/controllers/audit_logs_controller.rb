@@ -8,6 +8,16 @@ class AuditLogsController < ApplicationController
       		@bitacora = AuditLog.where("Expediente IS NOT NULL").order(created_at: 'DESC', expediente: 'DESC').page(params[:page])  
     	end 
     	AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú audit logs' )
-  	end
+	  end
+	  
+	  def create
+		puts ("ya estoy en el create pero como chingados hago para ver los valores?????????s")
+		AuditLog.create!(archivo: params[:archivo],  accion: params[:accion], user_id: current_user.id) 
+		    
+	  end
+
+	 
   	
 end
+
+ 

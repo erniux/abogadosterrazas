@@ -16,6 +16,7 @@ class PaginasController < ApplicationController
     AuditLog.create!(current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Menú Inicio' )
 
   end 
+ 
 
   def consulta
 	@expedientes = Expediente.all.order("entidad_responsable_id DESC, anio ASC, expediente ASC").page(params[:page])
