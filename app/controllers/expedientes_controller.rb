@@ -35,7 +35,7 @@ class ExpedientesController < ApplicationController
         #Crear Registro en la bitácora
         AuditLog.create!(expediente: @expediente.expediente, demandante: @expediente.demandante, demandado: @expediente.demandado, 
           entidad_responsable: @expediente.entidad_responsable_id, socio: @expediente.socio, anio: @expediente.anio,  
-          email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Creación de Expediente' )
+          email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, archivo: expediente_params, accion: 'Creación de Expediente' )
          
         format.html { redirect_to @expediente, notice: 'Registro creado correctamente.' }
       else
@@ -49,7 +49,7 @@ class ExpedientesController < ApplicationController
       if @expediente.update(expediente_params)
         AuditLog.create!(expediente: @expediente.expediente, demandante: @expediente.demandante, demandado: @expediente.demandado, 
           entidad_responsable: @expediente.entidad_responsable_id, socio: @expediente.socio, anio: @expediente.anio,  
-          email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, accion: 'Actualización de Expediente' )
+          email: current_user.email, current_sign_in_ip: current_user.current_sign_in_ip,  user_id: current_user.id, archivo: expediente_params, accion: 'Actualización de Expediente' )
         format.html { redirect_to @expediente, notice: 'Registro actualizado correctamente.' }
       else
         format.html { render :edit }
