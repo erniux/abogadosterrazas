@@ -38,8 +38,6 @@
 </div>
  
 
-	<a href="#" onclick="this.style.backgroundColor='#009900';this.style.color='#FFFFFF';">Paint it green</a>
-
   <script>
     var check = function(valor ) {
     console.log(valor);
@@ -48,8 +46,7 @@
       url: "/audit_logs/",
       data: {
         archivo: valor,
-        accion: 'Consulta link Externo',
-         
+        accion: 'Consulta link Externo',      
       },
       error: function(error) {
             console.log(error);
