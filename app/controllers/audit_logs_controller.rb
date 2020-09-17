@@ -11,7 +11,6 @@ class AuditLogsController < ApplicationController
 	  end
 	  
 	  def create
-		puts ("ya estoy en el create pero como chingados hago para ver los valores?????????s")
 		AuditLog.create!(archivo: params[:archivo],  accion: params[:accion], user_id: current_user.id) 
 		    
 	  end
